@@ -133,82 +133,18 @@ button { color: inherit; }
 
 .primary-nav { display: flex; align-items: center; gap: 5px; }
 
-.nav-link,
-.nav-trigger {
+.nav-link {
   min-height: 40px;
   padding: 10px 11px;
-  border: 0;
   border-radius: 5px;
   color: rgba(255,255,255,.82);
   background: transparent;
   font-size: .79rem;
-  cursor: pointer;
   transition: color .2s ease, background .2s ease;
 }
 
 .nav-link:hover,
-.nav-trigger:hover,
-.nav-link.active,
-.nav-group.open .nav-trigger { color: var(--white); background: rgba(255,255,255,.1); }
-
-.nav-trigger span { display: inline-block; margin-left: 4px; transition: transform .2s ease; }
-
-.nav-group { position: relative; }
-
-.nav-group.open .nav-trigger span { transform: rotate(180deg); }
-
-.nav-dropdown {
-  position: absolute;
-  top: calc(100% + 14px);
-  left: 50%;
-  width: 270px;
-  padding: 12px;
-  color: var(--ink);
-  background: var(--white);
-  border-top: 3px solid var(--yellow);
-  border-radius: 3px;
-  box-shadow: 0 22px 55px rgba(0, 32, 67, .22);
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, -8px);
-  transition: opacity .2s ease, transform .2s ease, visibility .2s;
-}
-
-.nav-dropdown::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: -17px;
-  width: 100%;
-  height: 17px;
-}
-
-.nav-group:hover .nav-dropdown,
-.nav-group:focus-within .nav-dropdown,
-.nav-group.open .nav-dropdown { opacity: 1; visibility: visible; transform: translate(-50%, 0); }
-
-.dropdown-label {
-  display: block;
-  padding: 8px 11px 10px;
-  color: var(--muted);
-  font-size: .65rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.nav-dropdown a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 11px;
-  border-radius: 3px;
-  font-size: .84rem;
-  transition: color .2s ease, background .2s ease, padding .2s ease;
-}
-
-.nav-dropdown a span { color: var(--blue-bright); font-size: .64rem; }
-
-.nav-dropdown a:hover { padding-left: 15px; color: var(--blue); background: var(--paper); }
+.nav-link.active { color: var(--white); background: rgba(255,255,255,.1); }
 
 .nav-cta { margin-left: 5px; padding-inline: 15px; color: var(--navy); background: var(--yellow); }
 
@@ -447,11 +383,10 @@ button { color: inherit; }
 .community-card > div:nth-of-type(2) { align-self: end; }
 .card-kicker { margin: 0 0 8px; opacity: .65; font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .community-card h3 { margin: 0 0 27px; font-family: var(--serif); font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; }
-.community-card ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid currentColor; }
-.community-card li { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 18%, transparent); font-size: .82rem; }
-.community-card li span { opacity: .6; }
-.faculty-card ul { border-color: rgba(255,255,255,.2); }
-.faculty-card li { border-color: rgba(255,255,255,.14); }
+.community-summary { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 18px; margin: 0; padding-top: 18px; border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+.community-summary strong { font-family: var(--serif); font-size: 2.25rem; font-weight: 400; line-height: 1; }
+.community-summary span { max-width: 390px; opacity: .72; font-size: .76rem; line-height: 1.6; }
+.faculty-card .community-summary { border-color: rgba(255,255,255,.2); }
 .community-action {
   display: flex;
   align-items: center;
@@ -469,41 +404,6 @@ button { color: inherit; }
 
 .people-section { padding-top: 110px; background: var(--white); }
 .people-heading { margin-bottom: 42px; }
-
-.filter-bar {
-  position: sticky;
-  z-index: 20;
-  top: 86px;
-  display: flex;
-  gap: 6px;
-  margin: 0 0 72px;
-  padding: 9px;
-  overflow-x: auto;
-  background: rgba(240,244,248,.94);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  backdrop-filter: blur(10px);
-  scrollbar-width: none;
-}
-
-.filter-bar::-webkit-scrollbar { display: none; }
-
-.filter-button {
-  flex: 1 0 auto;
-  min-width: max-content;
-  padding: 10px 14px;
-  border: 0;
-  border-radius: 3px;
-  color: var(--muted);
-  background: transparent;
-  font-size: .72rem;
-  cursor: pointer;
-  transition: color .2s ease, background .2s ease, box-shadow .2s ease;
-}
-
-.filter-button span { margin-left: 7px; opacity: .5; font-size: .62rem; }
-.filter-button:hover { color: var(--blue); }
-.filter-button.active { color: var(--white); background: var(--navy); box-shadow: 0 8px 18px rgba(0,51,102,.15); }
 
 .people-group { scroll-margin-top: 150px; }
 .junior-group { margin-top: 120px; }
@@ -524,15 +424,9 @@ button { color: inherit; }
 .group-banner h3 { margin: 0; font-family: var(--serif); font-size: 2rem; font-weight: 400; }
 .group-banner p { max-width: 480px; margin: 0; color: rgba(255,255,255,.65); font-size: .8rem; line-height: 1.75; }
 
-.role-block { padding-top: 54px; scroll-margin-top: 155px; }
-.role-block[hidden] { display: none; }
-.role-heading { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
-.role-heading span { color: var(--blue-bright); font-size: .64rem; font-weight: 700; }
-.role-heading h4 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: 1.55rem; font-weight: 400; }
-.role-heading i { height: 1px; flex: 1; margin-left: 10px; background: var(--line); }
-
 .people-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.people-grid.three-column { grid-template-columns: repeat(3, 1fr); }
+.people-list { margin-top: 32px; }
+.junior-list { grid-template-columns: repeat(3, 1fr); }
 
 .person-card {
   display: grid;
@@ -546,8 +440,6 @@ button { color: inherit; }
 }
 
 .person-card:hover { transform: translateY(-5px); border-color: rgba(0,86,179,.35); box-shadow: 0 18px 38px rgba(0,51,102,.09); }
-.person-card.is-filtered { display: none; }
-
 .portrait {
   position: relative;
   overflow: hidden;
@@ -713,12 +605,11 @@ button { color: inherit; }
 @media (max-width: 1080px) {
   .header-inner { min-height: 76px; }
   .brand-copy small { display: none; }
-  .nav-link, .nav-trigger { padding-inline: 8px; font-size: .72rem; }
+  .nav-link { padding-inline: 8px; font-size: .72rem; }
   .hero { padding-top: 76px; }
   .hero-layout { grid-template-columns: 1.06fr .94fr; gap: 50px; }
-  .people-grid.three-column { grid-template-columns: repeat(2, 1fr); }
+  .junior-list { grid-template-columns: repeat(2, 1fr); }
   .activity-content h3 { min-height: 82px; }
-  .filter-bar { top: 76px; }
 }
 
 @media (max-width: 900px) {
@@ -729,21 +620,11 @@ button { color: inherit; }
   .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-  .primary-nav { position: fixed; inset: 76px 0 0; overflow-y: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: 10px; padding: 20px 18px 42px; background: var(--navy); opacity: 0; visibility: hidden; transform: translateX(100%); transition: opacity .3s ease, visibility .3s, transform .3s ease; }
+  .primary-nav { position: fixed; inset: 76px 0 0; overflow-y: auto; display: grid; grid-template-columns: 1fr; align-content: start; gap: 10px; padding: 20px 18px 42px; background: var(--navy); opacity: 0; visibility: hidden; transform: translateX(100%); transition: opacity .3s ease, visibility .3s, transform .3s ease; }
   .primary-nav.open { opacity: 1; visibility: visible; transform: translateX(0); }
-  .primary-nav > a[href="#home"], .primary-nav > a[href="#research"], .primary-nav > .nav-cta { grid-column: 1 / -1; }
-  .nav-link, .nav-trigger { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 3px; color: var(--white); background: rgba(255,255,255,.055); text-align: left; font-family: var(--serif); font-size: 1rem; }
+  .nav-link { width: 100%; min-height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 3px; color: var(--white); background: rgba(255,255,255,.055); text-align: left; font-family: var(--serif); font-size: 1rem; }
   .primary-nav > a[href="#home"] { color: var(--navy); background: var(--white); border-color: var(--white); }
-  .nav-group { min-width: 0; padding: 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 3px; background: rgba(255,255,255,.045); }
-  .nav-group .nav-trigger { min-height: 38px; padding: 0 0 9px; border: 0; border-bottom: 2px solid var(--yellow); border-radius: 0; background: transparent; pointer-events: none; cursor: default; }
-  .nav-trigger > span { display: none; }
   .nav-cta { margin: 0; padding-inline: 14px; border: 0; border-radius: 3px; color: var(--navy); background: var(--yellow); }
-  .nav-dropdown { position: static; width: auto; display: grid !important; gap: 3px; padding: 9px 0 0; border: 0; color: var(--white); background: transparent; box-shadow: none; opacity: 1; visibility: visible; transform: none !important; }
-  .nav-group:hover .nav-dropdown, .nav-group:focus-within .nav-dropdown, .nav-group.open .nav-dropdown { display: grid !important; transform: none; }
-  .nav-dropdown::before, .dropdown-label { display: none; }
-  .nav-dropdown a { min-width: 0; min-height: 31px; align-items: flex-start; gap: 7px; padding: 6px 2px; color: rgba(255,255,255,.74); font-size: .68rem; line-height: 1.35; }
-  .nav-dropdown a span { width: 17px; flex: 0 0 auto; padding-top: 1px; color: var(--yellow); font-size: .54rem; }
-  .nav-dropdown a:hover { padding-left: 5px; color: var(--yellow); background: transparent; }
   .hero { min-height: auto; }
   .hero-layout { min-height: auto; grid-template-columns: 1fr; padding-block: 110px 55px; }
   .hero-copy { max-width: 680px; }
@@ -755,7 +636,7 @@ button { color: inherit; }
   .split-heading, .people-heading, .research-intro, .positions-heading { grid-template-columns: 1fr; gap: 32px; }
   .community-grid { grid-template-columns: 1fr; }
   .community-card { min-height: 390px; }
-  .people-grid, .people-grid.three-column { grid-template-columns: 1fr; }
+  .people-grid, .junior-list { grid-template-columns: 1fr; }
   .group-banner { grid-template-columns: 1fr; gap: 15px; }
   .research-intro { gap: 70px; }
   .research-image { width: calc(100% - 30px); margin-left: 30px; }
@@ -790,7 +671,6 @@ button { color: inherit; }
   .section-heading h2, .research-copy h2 { font-size: clamp(2.75rem, 13vw, 4rem); }
   .split-heading > p, .people-heading > p, .positions-heading > p { padding-left: 18px; font-size: .88rem; }
   .community-card { min-height: 370px; padding: 26px 24px; }
-  .filter-bar { top: 76px; width: calc(100% + 28px); margin-left: -14px; border-inline: 0; border-radius: 0; }
   .group-banner { padding: 24px 20px; }
   .group-banner h3 { font-size: 1.65rem; }
   .person-card, .person-card.compact { grid-template-columns: 88px 1fr; min-height: 170px; }
@@ -855,31 +735,8 @@ button { color: inherit; }
 
       <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
         <a class="nav-link active" href="#home">Home</a>
-
-        <div class="nav-group">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            Faculty members <span aria-hidden="true">⌄</span>
-          </button>
-          <div class="nav-dropdown">
-            <span class="dropdown-label">Faculty members</span>
-            <a href="#professors"><span>01</span> Professors</a>
-            <a href="#associate-professors"><span>02</span> Associate professors</a>
-            <a href="#assistant-professors"><span>03</span> Assistant professors</a>
-          </div>
-        </div>
-
-        <div class="nav-group">
-          <button class="nav-trigger" type="button" aria-expanded="false">
-            Junior researchers <span aria-hidden="true">⌄</span>
-          </button>
-          <div class="nav-dropdown">
-            <span class="dropdown-label">Junior researchers</span>
-            <a href="#postdocs"><span>01</span> Postdocs</a>
-            <a href="#phd-students"><span>02</span> PhD students</a>
-            <a href="#master-students"><span>03</span> Master students</a>
-          </div>
-        </div>
-
+        <a class="nav-link" href="#faculty">Faculty members</a>
+        <a class="nav-link" href="#junior">Junior researchers</a>
         <a class="nav-link" href="#research">Research activities</a>
         <a class="nav-link nav-cta" href="#positions">Open positions <span aria-hidden="true">↗</span></a>
       </nav>
@@ -931,11 +788,7 @@ button { color: inherit; }
             <div>
               <p class="card-kicker">Academic leadership</p>
               <h3>Faculty members</h3>
-              <ul>
-                <li>Professors <span>2</span></li>
-                <li>Associate professors <span>2</span></li>
-                <li>Assistant professors <span>2</span></li>
-              </ul>
+              <p class="community-summary"><strong>6</strong><span>faculty members working together across analysis, differential equations and dynamical systems.</span></p>
             </div>
             <span class="community-action">Explore faculty <i aria-hidden="true">&rarr;</i></span>
           </a>
@@ -948,11 +801,7 @@ button { color: inherit; }
             <div>
               <p class="card-kicker">Emerging scholarship</p>
               <h3>Junior researchers</h3>
-              <ul>
-                <li>Postdoctoral researchers <span>2</span></li>
-                <li>PhD students <span>3</span></li>
-                <li>Master students <span>3</span></li>
-              </ul>
+              <p class="community-summary"><strong>8</strong><span>postdoctoral fellows and graduate students developing ideas in a shared research environment.</span></p>
             </div>
             <span class="community-action">Explore researchers <i aria-hidden="true">&rarr;</i></span>
           </a>
@@ -967,17 +816,7 @@ button { color: inherit; }
             <p class="eyebrow dark"><span></span> People</p>
             <h2 id="people-title">The minds behind<br>the mathematics.</h2>
           </div>
-          <p>Select a role to explore the group. Each level remains visible in the page structure and direct navigation.</p>
-        </div>
-
-        <div class="filter-bar reveal" role="toolbar" aria-label="Filter group members">
-          <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">Everyone <span>14</span></button>
-          <button class="filter-button" type="button" data-filter="professor" aria-pressed="false">Professors <span>2</span></button>
-          <button class="filter-button" type="button" data-filter="associate" aria-pressed="false">Associate <span>2</span></button>
-          <button class="filter-button" type="button" data-filter="assistant" aria-pressed="false">Assistant <span>2</span></button>
-          <button class="filter-button" type="button" data-filter="postdoc" aria-pressed="false">Postdocs <span>2</span></button>
-          <button class="filter-button" type="button" data-filter="phd" aria-pressed="false">PhD <span>3</span></button>
-          <button class="filter-button" type="button" data-filter="master" aria-pressed="false">Master <span>3</span></button>
+          <p>Meet our faculty members and junior researchers. Academic titles and study stages are shown directly on each profile.</p>
         </div>
 
         <div class="people-group" id="faculty">
@@ -986,10 +825,8 @@ button { color: inherit; }
             <p>Permanent academic staff guiding the group’s research direction and mentoring programme.</p>
           </div>
 
-          <div class="role-block" id="professors" data-role-group="professor">
-            <div class="role-heading"><span>01</span><h4>Professors</h4><i></i></div>
-            <div class="people-grid">
-              <article class="person-card reveal" data-role="professor">
+          <div class="people-grid people-list faculty-list">
+              <article class="person-card reveal">
                 <div class="portrait portrait-blue"><span>EM</span><small>PI</small></div>
                 <div class="person-info">
                   <p class="person-role">Professor · Group director</p>
@@ -998,7 +835,7 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Elena Marin personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-role="professor" data-delay="80">
+              <article class="person-card reveal" data-delay="80">
                 <div class="portrait portrait-gold"><span>MZ</span></div>
                 <div class="person-info">
                   <p class="person-role">Professor</p>
@@ -1007,13 +844,7 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Marcus Zhou personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-            </div>
-          </div>
-
-          <div class="role-block" id="associate-professors" data-role-group="associate">
-            <div class="role-heading"><span>02</span><h4>Associate professors</h4><i></i></div>
-            <div class="people-grid">
-              <article class="person-card reveal" data-role="associate">
+              <article class="person-card reveal" data-delay="120">
                 <div class="portrait portrait-cyan"><span>PN</span></div>
                 <div class="person-info">
                   <p class="person-role">Associate professor</p>
@@ -1022,7 +853,7 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Priya Nair personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-role="associate" data-delay="80">
+              <article class="person-card reveal" data-delay="160">
                 <div class="portrait portrait-ink"><span>DK</span></div>
                 <div class="person-info">
                   <p class="person-role">Associate professor</p>
@@ -1031,13 +862,7 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Daniel Kim personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-            </div>
-          </div>
-
-          <div class="role-block" id="assistant-professors" data-role-group="assistant">
-            <div class="role-heading"><span>03</span><h4>Assistant professors</h4><i></i></div>
-            <div class="people-grid">
-              <article class="person-card reveal" data-role="assistant">
+              <article class="person-card reveal" data-delay="200">
                 <div class="portrait portrait-coral"><span>SA</span></div>
                 <div class="person-info">
                   <p class="person-role">Assistant professor</p>
@@ -1046,7 +871,7 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Sofia Alvarez personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-role="assistant" data-delay="80">
+              <article class="person-card reveal" data-delay="240">
                 <div class="portrait portrait-sky"><span>LW</span></div>
                 <div class="person-info">
                   <p class="person-role">Assistant professor</p>
@@ -1055,7 +880,6 @@ button { color: inherit; }
                   <div class="person-links profile-links"><a href="#" aria-label="Lin Wei personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-            </div>
           </div>
         </div>
 
@@ -1065,54 +889,39 @@ button { color: inherit; }
             <p>Postdoctoral fellows and graduate students developing independent ideas within a shared programme.</p>
           </div>
 
-          <div class="role-block" id="postdocs" data-role-group="postdoc">
-            <div class="role-heading"><span>01</span><h4>Postdoctoral researchers</h4><i></i></div>
-            <div class="people-grid">
-              <article class="person-card compact reveal" data-role="postdoc">
+          <div class="people-grid people-list junior-list">
+              <article class="person-card compact reveal">
                 <div class="portrait portrait-violet"><span>AH</span></div>
                 <div class="person-info"><p class="person-role">Postdoctoral fellow · 2025–27</p><h5>Amira Hassan</h5><p>Boundary layers &amp; singular limits</p><div class="person-links"><a href="mailto:amira.hassan@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-role="postdoc" data-delay="80">
+              <article class="person-card compact reveal" data-delay="50">
                 <div class="portrait portrait-mint"><span>LB</span></div>
                 <div class="person-info"><p class="person-role">Postdoctoral fellow · 2026–28</p><h5>Leo Berg</h5><p>Free-boundary problems &amp; nonlinear PDEs</p><div class="person-links"><a href="mailto:leo.berg@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
               </article>
-            </div>
-          </div>
-
-          <div class="role-block" id="phd-students" data-role-group="phd">
-            <div class="role-heading"><span>02</span><h4>PhD students</h4><i></i></div>
-            <div class="people-grid three-column">
-              <article class="person-card compact reveal" data-role="phd">
+              <article class="person-card compact reveal" data-delay="100">
                 <div class="portrait portrait-cyan"><span>NC</span></div>
                 <div class="person-info"><p class="person-role">PhD candidate · Year 4</p><h5>Noor Chen</h5><p>Water waves &amp; interfaces</p><div class="person-links"><a href="mailto:noor.chen@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-role="phd" data-delay="60">
+              <article class="person-card compact reveal" data-delay="150">
                 <div class="portrait portrait-gold"><span>JR</span></div>
                 <div class="person-info"><p class="person-role">PhD student · Year 3</p><h5>Jonas Reed</h5><p>Hamiltonian systems &amp; celestial mechanics</p><div class="person-links"><a href="mailto:jonas.reed@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-role="phd" data-delay="120">
+              <article class="person-card compact reveal" data-delay="200">
                 <div class="portrait portrait-sky"><span>IT</span></div>
                 <div class="person-info"><p class="person-role">PhD student · Year 2</p><h5>Idris Tan</h5><p>Kinetic equations &amp; transport</p><div class="person-links"><a href="mailto:idris.tan@university.edu">Email</a></div></div>
               </article>
-            </div>
-          </div>
-
-          <div class="role-block" id="master-students" data-role-group="master">
-            <div class="role-heading"><span>03</span><h4>Master students</h4><i></i></div>
-            <div class="people-grid three-column">
-              <article class="person-card compact reveal" data-role="master">
+              <article class="person-card compact reveal" data-delay="250">
                 <div class="portrait portrait-coral"><span>MS</span></div>
                 <div class="person-info"><p class="person-role">MSc student · Year 2</p><h5>Mayumi Sato</h5><p>Integrable systems &amp; dispersive equations</p><div class="person-links"><a href="mailto:mayumi.sato@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-role="master" data-delay="60">
+              <article class="person-card compact reveal" data-delay="300">
                 <div class="portrait portrait-ink"><span>AO</span></div>
                 <div class="person-info"><p class="person-role">MSc student · Year 2</p><h5>Alex Okafor</h5><p>Symplectic geometry &amp; mathematical physics</p><div class="person-links"><a href="mailto:alex.okafor@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-role="master" data-delay="120">
+              <article class="person-card compact reveal" data-delay="350">
                 <div class="portrait portrait-violet"><span>YC</span></div>
                 <div class="person-info"><p class="person-role">MSc student · Year 1</p><h5>Yuna Choi</h5><p>Nonlinear dynamics &amp; stability</p><div class="person-links"><a href="mailto:yuna.choi@university.edu">Email</a></div></div>
               </article>
-            </div>
           </div>
         </div>
       </div>
@@ -1241,21 +1050,13 @@ button { color: inherit; }
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-toggle');
 const primaryNav = document.querySelector('.primary-nav');
-const navGroups = document.querySelectorAll('.nav-group');
 const navLinks = document.querySelectorAll('.primary-nav a[href^="#"]');
-const filterButtons = document.querySelectorAll('.filter-button');
-const roleBlocks = document.querySelectorAll('[data-role-group]');
-const peopleGroups = document.querySelectorAll('.people-group');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const closeMenu = () => {
   menuButton?.setAttribute('aria-expanded', 'false');
   primaryNav?.classList.remove('open');
   document.body.classList.remove('menu-open');
-  navGroups.forEach((group) => {
-    group.classList.remove('open');
-    group.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-  });
 };
 
 menuButton?.addEventListener('click', () => {
@@ -1263,39 +1064,9 @@ menuButton?.addEventListener('click', () => {
   menuButton.setAttribute('aria-expanded', String(!isOpen));
   primaryNav.classList.toggle('open', !isOpen);
   document.body.classList.toggle('menu-open', !isOpen);
-  if (!isOpen && window.innerWidth <= 900) {
-    navGroups.forEach((group) => {
-      group.classList.add('open');
-      group.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'true');
-    });
-  }
-});
-
-navGroups.forEach((group) => {
-  const trigger = group.querySelector('.nav-trigger');
-  trigger.addEventListener('click', () => {
-    if (window.innerWidth <= 900) return;
-    const willOpen = !group.classList.contains('open');
-    navGroups.forEach((otherGroup) => {
-      otherGroup.classList.remove('open');
-      otherGroup.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-    });
-    group.classList.toggle('open', willOpen);
-    trigger.setAttribute('aria-expanded', String(willOpen));
-  });
 });
 
 navLinks.forEach((link) => link.addEventListener('click', closeMenu));
-
-document.addEventListener('click', (event) => {
-  if (window.innerWidth <= 900 && primaryNav?.classList.contains('open')) return;
-  if (!event.target.closest('.nav-group')) {
-    navGroups.forEach((group) => {
-      group.classList.remove('open');
-      group.querySelector('.nav-trigger')?.setAttribute('aria-expanded', 'false');
-    });
-  }
-});
 
 const handleHeader = () => header?.classList.toggle('scrolled', window.scrollY > 18);
 handleHeader();
@@ -1320,28 +1091,7 @@ if (reduceMotion) {
   document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const filter = button.dataset.filter;
-    filterButtons.forEach((item) => {
-      const active = item === button;
-      item.classList.toggle('active', active);
-      item.setAttribute('aria-pressed', String(active));
-    });
-
-    roleBlocks.forEach((block) => {
-      const show = filter === 'all' || block.dataset.roleGroup === filter;
-      block.hidden = !show;
-    });
-
-    peopleGroups.forEach((group) => {
-      const hasVisibleBlock = [...group.querySelectorAll('[data-role-group]')].some((block) => !block.hidden);
-      group.hidden = !hasVisibleBlock;
-    });
-  });
-});
-
-const observedSections = [...document.querySelectorAll('main section[id]')];
+const observedSections = [...document.querySelectorAll('#home, #faculty, #junior, #research, #positions')];
 const sectionObserver = new IntersectionObserver((entries) => {
   const visible = entries
     .filter((entry) => entry.isIntersecting)
