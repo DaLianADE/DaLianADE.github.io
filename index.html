@@ -788,6 +788,10 @@ button { color: inherit; }
 .download-panel > div > p:first-child { margin: 0 0 7px; color: var(--blue); font-size: .61rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .download-panel h2 { font-size: 2.35rem; }
 .download-panel > div > p:last-child { margin: 12px 0 0; color: var(--muted); font-size: .72rem; }
+.download-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+.button-outline { color: var(--blue); border-color: #a8bfd7; background: var(--white); }
+.button-outline:hover { color: var(--navy); border-color: var(--blue); background: var(--paper); }
+.obfuscated-email { color: var(--blue); font-weight: 700; white-space: nowrap; }
 .positions-contact { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 35px; margin-top: 25px; padding: 40px; color: var(--white); background: var(--blue); }
 .positions-contact p { margin: 0 0 5px; color: var(--yellow); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .positions-contact h2 { color: var(--white); font-size: 2rem; }
@@ -804,6 +808,8 @@ button { color: inherit; }
 .footer-contact > span,
 .footer-links > span { margin-bottom: 6px; color: var(--blue); font-size: .61rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .footer-contact a { color: var(--navy); font-family: var(--serif); font-size: .9rem; }
+.footer-contact .contact-email { margin-bottom: 0; color: var(--navy); font-family: var(--serif); font-size: .86rem; font-weight: 400; letter-spacing: normal; line-height: 1.35; text-transform: none; white-space: nowrap; }
+.footer-contact .contact-email strong { color: var(--blue); }
 .footer-links a { color: var(--muted); font-size: .7rem; }
 .footer-links a:hover,
 .footer-contact a:hover { color: var(--blue); }
@@ -959,6 +965,7 @@ button { color: inherit; }
   .international-detail ul { grid-column: auto; grid-template-columns: 1fr; }
   .download-panel,
   .positions-contact { grid-template-columns: 1fr; padding: 29px 23px; }
+  .download-actions { display: grid; justify-content: stretch; }
   .position-row { position: relative; grid-template-columns: 1fr; gap: 14px; padding: 25px 0; }
   .position-row:hover { padding-inline: 14px; }
   .position-meta { flex-direction: row; }
@@ -1226,7 +1233,7 @@ button { color: inherit; }
         <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"></circle><path d="M13 31c4-13 10-17 22-13M12 25c8 2 14 7 19 14M18 10c-2 11 1 21 12 28"></path><circle cx="34" cy="18" r="3"></circle></svg>
         <div><strong>DLADE</strong><p>School of Mathematical Sciences<br>DUT — Dalian University of Technology</p></div>
       </div>
-      <div class="footer-contact"><span>Contact</span><a href="mailto:research-group@university.edu">research-group@university.edu</a><p>School of Mathematical Sciences<br>Dalian University of Technology<br>No. 2 Linggong Road, Ganjingzi District<br>Dalian 116024, Liaoning, China</p></div>
+      <div class="footer-contact"><span>Contact</span><span class="contact-email">wangmeiyan <strong>(at)</strong> mail.dlut.edu.cn</span><p>School of Mathematical Sciences<br>Dalian University of Technology<br>No. 2 Linggong Road, Ganjingzi District<br>Dalian 116024, Liaoning, China</p></div>
       <div class="footer-links"><span>Explore</span><a href="people.html">People</a><a href="#research">Research</a><a href="#activities">Activities</a><a href="positions.html">Open positions</a></div>
       <div class="footer-links"><span>Connect</span><a href="https://www.dlut.edu.cn/" target="_blank" rel="noreferrer">Dalian University of Technology ↗</a><a href="https://math.dlut.edu.cn/" target="_blank" rel="noreferrer">School of Mathematical Sciences ↗</a><a href="https://dutdynamics.github.io/ddes/" target="_blank" rel="noreferrer">DDES Seminar ↗</a><a href="https://dutdynamics.github.io/ds/" target="_blank" rel="noreferrer">Dynamics Seminar ↗</a></div>
     </div>

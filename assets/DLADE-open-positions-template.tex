@@ -1,0 +1,294 @@
+% DLADE Open Positions - editable XeLaTeX template
+% Compile with:
+%   xelatex DLADE-open-positions-template.tex
+% Run XeLaTeX a second time if hyperlinks or metadata are changed.
+%
+% The most frequently edited text is collected immediately below.
+\documentclass[10pt]{article}
+
+\usepackage[a4paper,margin=0mm,noheadfoot]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\setmainfont{TeX Gyre Heros}
+\newfontfamily\DisplayFont{TeX Gyre Termes}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+% ---------- Editable information ----------
+\newcommand{\RecruitmentYear}{2027}
+\newcommand{\PhDOpenings}{3}
+\newcommand{\PostdocOpenings}{4}
+\newcommand{\FundingPeriod}{January 2027 - June 2031}
+\newcommand{\PhDStart}{September 2027}
+\newcommand{\PostdocStart}{January 2027}
+\newcommand{\FirstReviewDate}{August 31, 2026}
+\newcommand{\EmailUser}{wangmeiyan}
+\newcommand{\EmailDomain}{mail.dlut.edu.cn}
+\newcommand{\Website}{https://dalianade.github.io/}
+\newcommand{\ObfuscatedEmail}{\EmailUser\ \textbf{(at)}\ \EmailDomain}
+
+% ---------- Brand palette ----------
+\definecolor{DLADEBlue}{HTML}{075EB7}
+\definecolor{DLADENavy}{HTML}{063B6F}
+\definecolor{DLADENavyDark}{HTML}{022B52}
+\definecolor{DLADEYellow}{HTML}{FFCC00}
+\definecolor{DLADEInk}{HTML}{183A59}
+\definecolor{DLADEMuted}{HTML}{60778D}
+\definecolor{DLADEPale}{HTML}{EEF4F9}
+\definecolor{DLADEPaleBlue}{HTML}{DDEAF5}
+\definecolor{DLADELine}{HTML}{CAD8E5}
+\definecolor{DLADEHeaderMuted}{HTML}{C5D7E7}
+\definecolor{DLADEWhiteMuted}{HTML}{D6E2ED}
+
+\hypersetup{
+  pdftitle={Open PhD and Postdoc Positions in Applied Mathematics - DLADE},
+  pdfauthor={Dalian Analysis and Differential Equations},
+  pdfsubject={PhD and postdoctoral recruitment at Dalian University of Technology},
+  colorlinks=true,
+  urlcolor=DLADEYellow
+}
+
+% ---------- Reusable visual components ----------
+\newcommand{\DLADELogo}{%
+  \begin{tikzpicture}[baseline=-1.2mm,x=1mm,y=1mm]
+    \draw[white,line width=.45mm] (6,6) circle (6);
+    \draw[white,line width=.35mm,line cap=round] (2.7,2.7)--(9,9.2);
+    \draw[white,line width=.35mm,line cap=round] (3.4,9)--(8.6,3.4);
+    \fill[DLADEYellow] (10,8) circle (1.1);
+    \node[anchor=west,text=white,font=\DisplayFont\bfseries\fontsize{15}{15}\selectfont] at (15,5.4) {DLADE};
+  \end{tikzpicture}%
+}
+
+\newcommand{\Kicker}[1]{%
+  {\color{DLADEBlue}\bfseries\fontsize{8.1}{10}\selectfont\MakeUppercase{#1}}%
+}
+\newcommand{\YellowKicker}[1]{%
+  {\color{DLADEYellow}\bfseries\fontsize{8.1}{10}\selectfont\MakeUppercase{#1}}%
+}
+\newcommand{\DisplayTitle}[1]{%
+  {\DisplayFont\bfseries\color{DLADENavyDark}\fontsize{20}{22}\selectfont #1}%
+}
+\newcommand{\BodyText}{\color{DLADEInk}\fontsize{9.3}{13.35}\selectfont}
+\newcommand{\SmallBody}{\color{DLADEInk}\fontsize{8.7}{12.25}\selectfont}
+
+\newcommand{\Badge}[4]{%
+  \begin{textblock*}{55.3mm}(#1,70mm)
+    \begin{tikzpicture}[x=1mm,y=1mm]
+      \path[fill=white,draw=DLADEPaleBlue,line width=.25mm,rounded corners=2mm] (0,0) rectangle (55.3,-21);
+      \fill[DLADEYellow] (0,0) rectangle (2.2,-21);
+      \node[anchor=north west,text=DLADENavy,font=\DisplayFont\bfseries\fontsize{21}{21}\selectfont] at (6,-5.3) {#2};
+      \node[anchor=north west,text=DLADEBlue,font=\bfseries\fontsize{7.9}{9}\selectfont] at (6,-14.1) {\MakeUppercase{#3}};
+    \end{tikzpicture}
+  \end{textblock*}%
+}
+
+\newcommand{\TimelineCard}[3]{%
+  \begin{textblock*}{56mm}(#1,146mm)
+    \begin{tikzpicture}[x=1mm,y=1mm]
+      \path[fill=DLADEPale,rounded corners=1.5mm] (0,0) rectangle (56,-18);
+      \fill[DLADEYellow] (5.5,-9) circle (1.5);
+      \node[anchor=north west,text=DLADEBlue,font=\bfseries\fontsize{7.1}{8}\selectfont] at (10,-4.1) {\MakeUppercase{#2}};
+      \node[anchor=north west,text=DLADEInk,font=\bfseries\fontsize{9}{10}\selectfont] at (10,-9.8) {#3};
+    \end{tikzpicture}
+  \end{textblock*}%
+}
+
+\newcommand{\Footer}[1]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[DLADELine,line width=.2mm]
+      ([xshift=17mm,yshift=13.5mm]current page.south west)--
+      ([xshift=-17mm,yshift=13.5mm]current page.south east);
+  \end{tikzpicture}
+  \begin{textblock*}{78mm}(17mm,286.5mm)
+    {\color{DLADEMuted}\fontsize{7.7}{9}\selectfont Dalian Analysis and Differential Equations}
+  \end{textblock*}
+  \begin{textblock*}{54mm}(78mm,286.5mm)
+    \centering{\color{DLADEMuted}\fontsize{7.7}{9}\selectfont dalianade.github.io}
+  \end{textblock*}
+  \begin{textblock*}{30mm}(163mm,286.5mm)
+    \raggedleft{\color{DLADEMuted}\fontsize{7.7}{9}\selectfont #1 / 2}
+  \end{textblock*}%
+}
+
+\begin{document}
+
+% =====================================================================
+% PAGE 1
+% =====================================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[DLADENavyDark] (current page.north west) rectangle ([yshift=-66mm]current page.north east);
+  \fill[DLADEBlue] (current page.north west) rectangle ([xshift=8mm,yshift=-66mm]current page.north west);
+  \fill[DLADEYellow] (current page.north west) rectangle ([yshift=-4mm]current page.north east);
+\end{tikzpicture}
+
+\begin{textblock*}{72mm}(17mm,15mm)\DLADELogo\end{textblock*}
+\begin{textblock*}{92mm}(101mm,11.5mm)
+  \raggedleft
+  {\color{DLADEHeaderMuted}\fontsize{7.7}{9}\selectfont SCHOOL OF MATHEMATICAL SCIENCES}\\[1.2mm]
+  {\color{DLADEHeaderMuted}\bfseries\fontsize{8.2}{9}\selectfont DUT - DALIAN UNIVERSITY OF TECHNOLOGY}
+\end{textblock*}
+
+\begin{textblock*}{126mm}(17mm,31mm)
+  \YellowKicker{Recruitment \RecruitmentYear}\\[4.2mm]
+  {\DisplayFont\bfseries\color{white}\fontsize{25.5}{28.5}\selectfont
+  Open PhD \& Postdoc Positions\\in Applied Mathematics}
+\end{textblock*}
+\begin{textblock*}{44mm}(149mm,51.5mm)
+  \raggedleft{\color{DLADEHeaderMuted}\fontsize{8.6}{10}\selectfont DALIAN, CHINA}
+\end{textblock*}
+
+\Badge{17mm}{03}{PhD openings}{1}
+\Badge{77.3mm}{04}{Postdoc openings}{2}
+\Badge{137.6mm}{2027}{Start year}{3}
+
+\begin{textblock*}{176mm}(17mm,97mm)
+  \Kicker{An invitation to apply}\\[2.3mm]
+  {\BodyText
+  We welcome applications to \textbf{\PhDOpenings\ PhD positions} and
+  \textbf{\PostdocOpenings\ postdoctoral positions} in applied mathematics at the School of
+  Mathematical Sciences, Dalian University of Technology (DUT), for the funding period
+  \textbf{\FundingPeriod}. Applications are accepted on a rolling basis until all positions are filled.
+
+  \vspace{2.2mm}
+  The positions are based in Dalian, China. You will work in the research group of
+  \textbf{Prof. Xian Liao} or \textbf{Prof. Lei Zhao}, with research focused on
+  \textit{Analysis, Differential Equations, or Dynamical Systems}.
+
+  \vspace{2.2mm}
+  We offer an international research environment with regular seminars and workshops, and there is
+  research funding for international conferences and (long-term) research visits. No Chinese is
+  required, and English is the working language.}
+\end{textblock*}
+
+\TimelineCard{17mm}{PhD enrollment}{\PhDStart}
+\TimelineCard{77mm}{Postdoc start}{From \PostdocStart}
+\TimelineCard{137mm}{Applications}{Rolling until filled}
+
+\begin{textblock*}{176mm}(17mm,176mm)
+  \Kicker{01 / PhD positions}\\[2mm]
+  \DisplayTitle{Four years. Three openings.}\\[2.2mm]
+  {\SmallBody PhD positions are for four years, research-focused with no teaching obligation.
+  A competitive mathematical background is preferred. The following documents are required for application:}
+\end{textblock*}
+
+\begin{textblock*}{176mm}(17mm,204mm)
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \path[fill=DLADEPale,draw=DLADEPaleBlue,line width=.25mm,rounded corners=2mm] (0,0) rectangle (176,-40);
+    \fill[DLADEBlue] (0,0) rectangle (2.1,-40);
+  \end{tikzpicture}
+\end{textblock*}
+\begin{textblock*}{161mm}(24mm,209mm)
+  {\SmallBody
+  \begin{enumerate}[leftmargin=5.2mm,itemsep=.8mm,topsep=0mm,label=\textbf{\arabic*.}]
+    \item Cover letter (research interests and preferred supervisor).
+    \item CV (including contact details of two academic referees).
+    \item List of publications (if any).
+    \item MSc thesis (if already available; otherwise: a description of the MSc thesis project).
+    \item University diplomas/certificates and transcripts of records (BSc/MSc, if available).
+  \end{enumerate}}
+\end{textblock*}
+
+\Footer{1}
+\null\newpage
+
+% =====================================================================
+% PAGE 2
+% =====================================================================
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[DLADENavyDark] (current page.north west) rectangle ([yshift=-34mm]current page.north east);
+  \fill[DLADEYellow] (current page.north west) rectangle ([yshift=-3mm]current page.north east);
+\end{tikzpicture}
+
+\begin{textblock*}{72mm}(17mm,15mm)\DLADELogo\end{textblock*}
+\begin{textblock*}{92mm}(101mm,11.5mm)
+  \raggedleft
+  {\color{DLADEHeaderMuted}\fontsize{7.7}{9}\selectfont OPEN PHD \& POSTDOC POSITIONS}\\[1.2mm]
+  {\color{DLADEHeaderMuted}\bfseries\fontsize{8.2}{9}\selectfont APPLIED MATHEMATICS / DALIAN, CHINA}
+\end{textblock*}
+
+\begin{textblock*}{176mm}(17mm,45mm)
+  \Kicker{02 / Postdoctoral positions}\\[2mm]
+  \DisplayTitle{Two years. Four openings.}\\[2.2mm]
+  {\BodyText Postdoctoral positions are for two years, research-focused with no teaching obligation,
+  and we offer a competitive salary. Applicants should be \textbf{under 32 years old at the time of
+  appointment} and have \textbf{1-2 publications in internationally recognized journals}
+  (arXiv preprints do not count).}\\[3mm]
+  {\color{DLADEBlue}\bfseries\fontsize{10.2}{12}\selectfont REQUIRED APPLICATION DOCUMENTS}
+\end{textblock*}
+
+\begin{textblock*}{176mm}(17mm,82mm)
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \path[fill=DLADEPale,draw=DLADEPaleBlue,line width=.25mm,rounded corners=2mm] (0,0) rectangle (176,-39);
+    \fill[DLADEBlue] (0,0) rectangle (2.1,-39);
+  \end{tikzpicture}
+\end{textblock*}
+\begin{textblock*}{161mm}(24mm,87mm)
+  {\SmallBody
+  \begin{enumerate}[leftmargin=5.2mm,itemsep=1mm,topsep=0mm,label=\textbf{\arabic*.}]
+    \item Cover letter (research interests and preferred supervisor).
+    \item CV (including contact details of two academic referees).
+    \item List of publications.
+    \item Research statement (2-3 pages).
+    \item PhD certificate (if already available; otherwise: expected date of defense).
+  \end{enumerate}}
+\end{textblock*}
+
+% Application panel
+\begin{textblock*}{176mm}(17mm,129mm)
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \path[fill=DLADENavy,rounded corners=2.5mm] (0,0) rectangle (176,-88);
+    \fill[DLADEYellow] (0,0) rectangle (176,-2.5);
+  \end{tikzpicture}
+\end{textblock*}
+\begin{textblock*}{156mm}(27mm,139mm)
+  \YellowKicker{03 / Application procedure}\\[4mm]
+  {\DisplayFont\bfseries\color{white}\fontsize{20.5}{24}\selectfont
+  Submit one complete application as a single PDF.}\\[4mm]
+  {\color{white}\fontsize{9}{13}\selectfont
+  Email the single PDF to \textbf{Ms. Meiyan WANG} at
+  {\color{DLADEYellow}\ObfuscatedEmail}.}\\[4mm]
+  {\color{DLADEWhiteMuted}\fontsize{8.8}{12.5}\selectfont
+  \textbf{Deadline:} Open until filled (rolling review). There will be a first committee meeting
+  evaluating the application materials on \textbf{\FirstReviewDate}; subsequent reviews will then be
+  conducted every three months.}
+
+  \vspace{6mm}\color{DLADEHeaderMuted}\rule{156mm}{.2mm}\\[5mm]
+  \YellowKicker{More information}\\[3mm]
+  {\color{white}\bfseries\fontsize{10}{12}\selectfont\href{\Website}{\Website}}\\[1.5mm]
+  {\color{DLADEHeaderMuted}\fontsize{7.8}{9}\selectfont Dalian Analysis and Differential Equations}
+\end{textblock*}
+
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[DLADEBlue]
+    ([xshift=17mm,yshift=-225mm]current page.north west) rectangle
+    ([xshift=-17mm,yshift=-225.3mm]current page.north east);
+\end{tikzpicture}
+\begin{textblock*}{176mm}(17mm,231mm)
+  \Kicker{At a glance}
+\end{textblock*}
+\begin{textblock*}{81mm}(17mm,239mm)
+  {\SmallBody
+  \textbf{Host groups}\\Research group of Prof. Xian Liao or Prof. Lei Zhao.\\[4mm]
+  \textbf{Research areas}\\Analysis, Differential Equations, or Dynamical Systems.}
+\end{textblock*}
+\begin{textblock*}{81mm}(112mm,239mm)
+  {\SmallBody
+  \textbf{Working environment}\\English is the working language; no Chinese is required.\\[4mm]
+  \textbf{Research support}\\Funding for international conferences and (long-term) research visits.}
+\end{textblock*}
+\begin{textblock*}{176mm}(17mm,273mm)
+  {\SmallBody\textbf{Institution}\\School of Mathematical Sciences, Dalian University of Technology,
+  Linggong Road 2, 116024 Dalian, P.R. China.}
+\end{textblock*}
+
+\Footer{2}
+\null
+\end{document}
