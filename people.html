@@ -35,8 +35,8 @@
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct active" href="people.html" data-dropdown-link aria-current="page" aria-expanded="false" aria-haspopup="true" aria-controls="people-menu">People <span class="nav-chevron" aria-hidden="true">⌄</span></a>
           <div class="nav-submenu nav-submenu-wide" id="people-menu" role="menu">
-            <a href="people.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a>
-            <a href="people.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a>
+            <a href="people.html#faculty" role="menuitem">Faculty members</a>
+            <a href="people.html#junior" role="menuitem">Junior researchers</a>
           </div>
         </div>
         <div class="nav-dropdown" data-dropdown>
@@ -70,6 +70,17 @@
             <span>Search people</span>
             <span class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="people-search" type="search" placeholder="Name, role or research area…" autocomplete="off"></span>
           </label>
+          <label class="people-filter" for="people-role-filter">
+            <span>Community / status</span>
+            <select id="people-role-filter">
+              <option value="all">All people</option>
+              <option value="faculty">Faculty members</option>
+              <option value="junior">Junior researchers</option>
+              <option value="postdoc">Postdoctoral fellows</option>
+              <option value="phd">PhD students</option>
+              <option value="master">Master students</option>
+            </select>
+          </label>
           <label class="people-filter" for="people-area-filter">
             <span>Research direction</span>
             <select id="people-area-filter">
@@ -89,9 +100,9 @@
         </div>
 
         <div id="people-card-view" hidden>
-          <div class="people-group" id="analysis-pde" data-people-group="analysis-pde">
+          <div class="people-group" id="faculty" data-people-group="faculty">
             <div class="group-banner reveal">
-              <div><h3>Analysis &amp; Partial Differential Equations</h3></div>
+              <div><h3>Faculty members</h3></div>
             </div>
 
             <div class="people-grid people-list faculty-list">
@@ -152,9 +163,9 @@
             </div>
           </div>
 
-          <div class="people-group junior-group" id="dynamics-geometry" data-people-group="dynamics-geometry">
+          <div class="people-group junior-group" id="junior" data-people-group="junior">
             <div class="group-banner reveal">
-              <div><h3>Dynamical Systems &amp; Geometry</h3></div>
+              <div><h3>Junior researchers</h3></div>
             </div>
 
             <div class="people-grid people-list junior-list">
@@ -198,7 +209,7 @@
           <div class="people-table-scroll">
             <table id="people-table">
               <caption class="sr-only">DLADE people directory</caption>
-              <thead><tr><th scope="col">Name</th><th scope="col">Position / status</th><th scope="col">Research interests</th><th scope="col">Research direction</th><th scope="col">Links</th></tr></thead>
+              <thead><tr><th scope="col">Name</th><th scope="col">Position / status</th><th scope="col">Community</th><th scope="col">Research interests</th><th scope="col">Research direction</th><th scope="col">Links</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>

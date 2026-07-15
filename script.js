@@ -86,6 +86,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 
 const peopleCards = [...document.querySelectorAll('[data-person]')];
 const peopleSearch = document.querySelector('#people-search');
+const peopleRoleFilter = document.querySelector('#people-role-filter');
 const peopleAreaFilter = document.querySelector('#people-area-filter');
 const peopleResults = document.querySelector('#people-results');
 const peopleCardView = document.querySelector('#people-card-view');
@@ -98,10 +99,13 @@ let currentPeopleView = 'table';
 let peopleRows = [];
 
 const getText = (element, selector) => element.querySelector(selector)?.textContent.trim() || '';
+const getAreaLabel = (element) => element.dataset.area === 'analysis-pde'
+  ? 'analysis partial differential equations nonlinear pde fluid mechanics'
+  : 'dynamical systems geometry hamiltonian dynamics celestial mechanics symplectic geometry';
 
-const arrangePeopleByResearchArea = () => {
+const arrangePeopleByCommunity = () => {
   peopleCards.forEach((card) => {
-    const targetList = document.querySelector(`#${card.dataset.area} .people-list`);
+    const targetList = document.querySelector(`#${card.dataset.group} .people-list`);
     targetList?.append(card);
   });
 };
@@ -115,7 +119,7 @@ const buildPeopleTable = () => {
     row.dataset.group = card.dataset.group;
     row.dataset.area = card.dataset.area;
     row.dataset.role = card.dataset.role;
-    row.dataset.search = card.textContent.toLocaleLowerCase();
+    row.dataset.search = `${card.textContent} ${getAreaLabel(card)} ${card.dataset.group}`.toLocaleLowerCase();
 
     const nameCell = document.createElement('td');
     const name = document.createElement('span');
@@ -134,6 +138,12 @@ const buildPeopleTable = () => {
 
     const roleCell = document.createElement('td');
     roleCell.textContent = getText(card, '.person-role');
+
+    const communityCell = document.createElement('td');
+    const community = document.createElement('span');
+    community.className = 'table-community';
+    community.textContent = card.dataset.group === 'faculty' ? 'Faculty member' : 'Junior researcher';
+    communityCell.append(community);
 
     const researchCell = document.createElement('td');
     researchCell.textContent = getText(card, '.person-research');
@@ -155,7 +165,7 @@ const buildPeopleTable = () => {
       linksCell.textContent = '—';
     }
 
-    row.append(nameCell, roleCell, researchCell, directionCell, linksCell);
+    row.append(nameCell, roleCell, communityCell, researchCell, directionCell, linksCell);
     fragment.append(row);
     return row;
   });
@@ -163,28 +173,32 @@ const buildPeopleTable = () => {
   peopleTableBody.replaceChildren(fragment);
 };
 
-const matchesPeopleFilter = (cardOrRow, query, filter) => {
+const matchesPeopleFilter = (cardOrRow, query, roleFilter, areaFilter) => {
   const searchText = (cardOrRow.dataset.search || cardOrRow.textContent).toLocaleLowerCase();
   const matchesQuery = !query || searchText.includes(query);
-  const matchesArea = filter === 'all' || cardOrRow.dataset.area === filter;
-  return matchesQuery && matchesArea;
+  const matchesRole = roleFilter === 'all'
+    || cardOrRow.dataset.group === roleFilter
+    || cardOrRow.dataset.role === roleFilter;
+  const matchesArea = areaFilter === 'all' || cardOrRow.dataset.area === areaFilter;
+  return matchesQuery && matchesRole && matchesArea;
 };
 
 const updatePeopleDirectory = () => {
   if (!peopleCards.length) return;
   const query = peopleSearch?.value.trim().toLocaleLowerCase() || '';
-  const filter = peopleAreaFilter?.value || 'all';
+  const roleFilter = peopleRoleFilter?.value || 'all';
+  const areaFilter = peopleAreaFilter?.value || 'all';
   let visibleCount = 0;
 
   peopleCards.forEach((card) => {
-    if (!card.dataset.search) card.dataset.search = card.textContent.toLocaleLowerCase();
-    const isMatch = matchesPeopleFilter(card, query, filter);
+    if (!card.dataset.search) card.dataset.search = `${card.textContent} ${getAreaLabel(card)} ${card.dataset.group}`.toLocaleLowerCase();
+    const isMatch = matchesPeopleFilter(card, query, roleFilter, areaFilter);
     card.hidden = !isMatch;
     if (isMatch) visibleCount += 1;
   });
 
   peopleRows.forEach((row) => {
-    row.hidden = !matchesPeopleFilter(row, query, filter);
+    row.hidden = !matchesPeopleFilter(row, query, roleFilter, areaFilter);
   });
 
   peopleGroups.forEach((group) => {
@@ -193,7 +207,7 @@ const updatePeopleDirectory = () => {
   });
 
   if (peopleResults) {
-    peopleResults.textContent = visibleCount === peopleCards.length && !query && filter === 'all'
+    peopleResults.textContent = visibleCount === peopleCards.length && !query && roleFilter === 'all' && areaFilter === 'all'
       ? `Showing all ${visibleCount} people`
       : `Showing ${visibleCount} of ${peopleCards.length} people`;
   }
@@ -214,25 +228,27 @@ const setPeopleView = (view) => {
 };
 
 if (peopleCards.length) {
-  arrangePeopleByResearchArea();
+  arrangePeopleByCommunity();
   buildPeopleTable();
   const initialGroup = window.location.hash.slice(1);
-  if (peopleAreaFilter && ['analysis-pde', 'dynamics-geometry'].includes(initialGroup)) peopleAreaFilter.value = initialGroup;
+  if (peopleRoleFilter && ['faculty', 'junior'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
   setPeopleView('table');
   peopleSearch?.addEventListener('input', updatePeopleDirectory);
+  peopleRoleFilter?.addEventListener('change', updatePeopleDirectory);
   peopleAreaFilter?.addEventListener('change', updatePeopleDirectory);
   peopleViewButtons.forEach((button) => button.addEventListener('click', () => setPeopleView(button.dataset.peopleView)));
   document.querySelector('#people-reset')?.addEventListener('click', () => {
     if (peopleSearch) peopleSearch.value = '';
+    if (peopleRoleFilter) peopleRoleFilter.value = 'all';
     if (peopleAreaFilter) peopleAreaFilter.value = 'all';
     updatePeopleDirectory();
     peopleSearch?.focus();
   });
 
-  document.querySelectorAll('a[href$="#analysis-pde"], a[href$="#dynamics-geometry"]').forEach((link) => {
+  document.querySelectorAll('a[href$="#faculty"], a[href$="#junior"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const group = link.hash.slice(1);
-      if (peopleAreaFilter) peopleAreaFilter.value = group;
+      if (peopleRoleFilter) peopleRoleFilter.value = group;
       updatePeopleDirectory();
       event.preventDefault();
       history.pushState(null, '', `#${group}`);
