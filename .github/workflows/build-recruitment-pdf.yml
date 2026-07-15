@@ -37,8 +37,8 @@ jobs:
 
       - name: Publish the generated website PDFs
         run: |
-          cp recruitment/DLADE-open-positions.pdf assets/DLADE-open-positions.pdf
-          cp recruitment/PostDoc-in-China.pdf assets/PostDoc-in-China.pdf
+          cp DLADE-open-positions.pdf assets/DLADE-open-positions.pdf
+          cp PostDoc-in-China.pdf assets/PostDoc-in-China.pdf
 
       - name: Commit an updated PDF when content changed
         shell: bash
