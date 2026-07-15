@@ -464,19 +464,19 @@ button { color: inherit; }
 
 .people-directory-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 255px;
+  grid-template-columns: 255px minmax(0, 1fr);
   align-items: start;
   gap: 42px;
 }
 .people-directory-content {
   min-width: 0;
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 1;
 }
 .people-toolbar {
   position: sticky;
   top: 106px;
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 1;
   display: grid;
   grid-template-columns: 1fr;
@@ -603,7 +603,7 @@ button { color: inherit; }
 .people-table-scroll { width: 100%; overflow-x: auto; }
 #people-table { width: 100%; min-width: 860px; border-collapse: collapse; color: var(--text); font-size: .72rem; }
 #people-table th { padding: 18px 16px; color: var(--navy); background: #edf3f8; font-size: .65rem; letter-spacing: .07em; text-align: left; text-transform: uppercase; }
-#people-table td { padding: 17px 16px; border-top: 1px solid var(--line); vertical-align: top; }
+#people-table td { padding: 17px 16px; border-top: 1px solid var(--line); vertical-align: middle; }
 #people-table tbody tr { transition: background .18s ease; }
 #people-table tbody tr:hover { background: #f5f9fd; }
 .table-name { display: grid; gap: 2px; color: var(--navy); font-family: var(--serif); font-size: 1rem; font-weight: 700; }
@@ -782,7 +782,6 @@ button { color: inherit; }
 .opportunity-card ul { list-style: none; margin: 0; padding: 0; }
 .opportunity-card li { position: relative; padding: 8px 0 8px 16px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .66rem; line-height: 1.45; }
 .opportunity-card li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); }
-.position-remaining { display: block; margin-top: 6px; color: var(--blue); font-size: .58rem; font-weight: 800; letter-spacing: .04em; }
 .detail-section { scroll-margin-top: 110px; margin-top: 92px; padding-top: 38px; border-top: 4px solid var(--navy); }
 .detail-section > h2,
 .international-detail h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); }
@@ -807,7 +806,8 @@ button { color: inherit; }
 .international-detail li { position: relative; padding-left: 16px; color: rgba(255,255,255,.75); font-size: .68rem; }
 .international-detail li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); }
 .download-panel { scroll-margin-top: 110px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 35px; margin-top: 70px; padding: 39px; border: 1px solid #b9c8d7; border-left: 5px solid var(--yellow); background: var(--white); box-shadow: var(--shadow); }
-.download-panel h2 { max-width: 760px; font-size: clamp(2rem, 3.4vw, 3rem); }
+.download-panel > div { max-width: 720px; padding-left: 22px; border-left: 2px solid var(--blue); }
+.download-panel h2 { max-width: 680px; font-size: clamp(1.65rem, 2.6vw, 2.25rem); line-height: 1.12; }
 .guide-download-panel { background: #f7fbff; }
 .positions-international-support { scroll-margin-top: 110px; margin: 70px 0 0; color: var(--white); background: var(--navy); box-shadow: var(--shadow); }
 .obfuscated-email { color: var(--blue); font-weight: 700; white-space: nowrap; }
