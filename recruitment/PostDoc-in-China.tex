@@ -1,0 +1,101 @@
+% PostDoc in China - DLADE branded edition
+% The source pages are embedded without textual or visual edits.
+% Compile from the repository root with:
+%   pdfannotextractor recruitment/PostDoc-in-China-source.pdf
+%   pdflatex recruitment/PostDoc-in-China.tex
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[letterpaper,margin=0mm,noheadfoot]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage[scaled=.92]{helvet}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{pax}
+\usepackage{hyperref}
+
+\renewcommand{\familydefault}{\sfdefault}
+\newcommand{\DisplayFont}{\rmfamily}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\definecolor{DLADENavy}{HTML}{003B70}
+\definecolor{DLADENavyDark}{HTML}{022B52}
+\definecolor{DLADEBlue}{HTML}{075EB7}
+\definecolor{DLADEYellow}{HTML}{FFCC00}
+\definecolor{DLADEMuted}{HTML}{AFC4D8}
+
+\hypersetup{
+  pdftitle={PostDoc in China - DLADE},
+  pdfauthor={DaLian Analysis and Differential Equations Group},
+  pdfsubject={Postdoctoral preparation and onboarding guide},
+  colorlinks=true,
+  urlcolor=DLADEBlue
+}
+
+% Exact geometry of the mark used on the DLADE website.
+\newcommand{\DLADEMark}[1]{%
+  \begin{tikzpicture}[x=.25mm,y=.25mm,baseline=-1.2mm]
+    \draw[#1,line width=.425mm,line cap=round,line join=round] (24,24) circle (21);
+    \draw[#1,line width=.425mm,line cap=round,line join=round]
+      (13,17) .. controls (17,30) and (23,34) .. (35,30);
+    \draw[#1,line width=.425mm,line cap=round,line join=round]
+      (12,23) .. controls (20,21) and (26,16) .. (31,9);
+    \draw[#1,line width=.425mm,line cap=round,line join=round]
+      (18,38) .. controls (16,27) and (19,17) .. (30,10);
+    \fill[DLADEYellow] (34,30) circle (3);
+  \end{tikzpicture}%
+}
+
+\newcommand{\DLADEPageFrame}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[DLADENavy] (current page.north west) rectangle ([yshift=-6mm]current page.north east);
+    \fill[DLADEYellow] ([yshift=-6mm]current page.north west) rectangle ([yshift=-6.8mm]current page.north east);
+    \node[anchor=west] at ([xshift=8mm,yshift=-3mm]current page.north west) {\DLADEMark{white}};
+    \node[anchor=west,text=white,font=\bfseries\fontsize{6.5}{7}\selectfont]
+      at ([xshift=22mm,yshift=-3mm]current page.north west) {DLADE};
+    \node[anchor=east,text=DLADEMuted,font=\fontsize{5.8}{7}\selectfont]
+      at ([xshift=-8mm,yshift=-3mm]current page.north east) {SCHOOL OF MATHEMATICAL SCIENCES - DUT};
+    \fill[DLADENavyDark] (current page.south west) rectangle ([yshift=5.5mm]current page.south east);
+    \node[anchor=west,text=DLADEMuted,font=\fontsize{5.7}{6.5}\selectfont]
+      at ([xshift=8mm,yshift=2.7mm]current page.south west) {dalianade.github.io};
+    \node[anchor=east,text=DLADEMuted,font=\fontsize{5.7}{6.5}\selectfont]
+      at ([xshift=-8mm,yshift=2.7mm]current page.south east) {PostDoc in China};
+  \end{tikzpicture}%
+}
+
+\begin{document}
+
+% Branded cover; all subsequent pages reproduce the supplied PDF exactly.
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[DLADENavyDark] (current page.south west) rectangle (current page.north east);
+  \fill[DLADEYellow] (current page.north west) rectangle ([yshift=-5mm]current page.north east);
+  \fill[DLADEBlue] (current page.south west) rectangle ([xshift=10mm]current page.north west);
+  \draw[white,opacity=.12,line width=.5mm] ([xshift=-25mm,yshift=-25mm]current page.north east) circle (54mm);
+  \draw[white,opacity=.1,line width=.5mm] ([xshift=-25mm,yshift=-25mm]current page.north east) circle (74mm);
+\end{tikzpicture}
+
+\vspace*{25mm}
+\hspace*{20mm}\DLADEMark{white}\hspace{4mm}{\color{white}\bfseries\fontsize{18}{20}\selectfont DLADE}
+
+\vspace{42mm}
+\hspace*{20mm}\begin{minipage}{165mm}
+  {\color{DLADEYellow}\bfseries\fontsize{10}{12}\selectfont POSTDOCTORAL GUIDE}\par\vspace{6mm}
+  {\DisplayFont\color{white}\fontsize{39}{43}\selectfont PostDoc in China}\par\vspace{9mm}
+  {\color{DLADEMuted}\fontsize{12}{16}\selectfont School of Mathematical Sciences\par
+  Dalian University of Technology}
+\end{minipage}
+
+\vfill
+\hspace*{20mm}{\color{DLADEMuted}\fontsize{8}{10}\selectfont DALIAN - CHINA\hfill dalianade.github.io\hspace*{20mm}}
+\newpage
+
+\includepdf[
+  pages=-,
+  scale=.94,
+  offset=0 -0.5mm,
+  pagecommand={\thispagestyle{empty}\DLADEPageFrame}
+]{recruitment/PostDoc-in-China-source.pdf}
+
+\end{document}

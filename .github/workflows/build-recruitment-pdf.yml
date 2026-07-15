@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - recruitment/DLADE-open-positions.tex
+      - recruitment/PostDoc-in-China.tex
+      - recruitment/PostDoc-in-China-source.pdf
+      - recruitment/PostDoc-in-China-source.pax
   workflow_dispatch:
 
 permissions:
@@ -21,24 +24,31 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Compile the canonical XeLaTeX source
+      - name: Compile the open-positions XeLaTeX source
         uses: xu-cheng/latex-action@v4
         with:
           root_file: recruitment/DLADE-open-positions.tex
           latexmk_use_xelatex: true
 
-      - name: Publish the generated website PDF
-        run: cp recruitment/DLADE-open-positions.pdf assets/DLADE-open-positions.pdf
+      - name: Compile the postdoc-guide LaTeX source
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: recruitment/PostDoc-in-China.tex
+
+      - name: Publish the generated website PDFs
+        run: |
+          cp recruitment/DLADE-open-positions.pdf assets/DLADE-open-positions.pdf
+          cp recruitment/PostDoc-in-China.pdf assets/PostDoc-in-China.pdf
 
       - name: Commit an updated PDF when content changed
         shell: bash
         run: |
-          if git diff --quiet -- assets/DLADE-open-positions.pdf; then
-            echo "The generated PDF is already current."
+          if git diff --quiet -- assets/DLADE-open-positions.pdf assets/PostDoc-in-China.pdf; then
+            echo "The generated PDFs are already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/DLADE-open-positions.pdf
-          git commit -m "build: update recruitment PDF from TeX"
+          git add assets/DLADE-open-positions.pdf assets/PostDoc-in-China.pdf
+          git commit -m "build: update recruitment PDFs from TeX"
           git push

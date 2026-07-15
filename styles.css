@@ -981,8 +981,6 @@ button { color: inherit; }
 .research-hero-layout { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); align-items: center; gap: clamp(35px, 6vw, 90px); }
 .research-page-hero .positions-page-hero-inner { padding: 0; }
 .research-page-hero h1 { max-width: 740px; font-size: clamp(3.15rem, 5vw, 5.2rem); }
-.research-hero-actions { display: grid; grid-template-columns: 1fr; align-items: stretch; max-width: 600px; margin-top: 38px; }
-.research-hero-actions .button { justify-content: space-between; text-align: left; }
 .research-hero-image { position: relative; margin: 0; }
 .research-hero-image::after { content: ""; position: absolute; z-index: -1; right: -14px; bottom: -14px; width: 72%; height: 72%; background: var(--yellow); }
 .research-hero-image img { width: 100%; aspect-ratio: 1.24 / 1; object-fit: cover; border: 1px solid rgba(255,255,255,.24); box-shadow: 0 26px 60px rgba(0,20,45,.25); }
@@ -1061,7 +1059,6 @@ button { color: inherit; }
   .people-page .positions-page-hero h1,
   .activities-page .positions-page-hero h1 { font-size: clamp(2.75rem, 13vw, 4.15rem); }
   .research-page-hero h1 { font-size: clamp(2.8rem, 12vw, 4.2rem); }
-  .research-hero-actions { gap: 10px; }
   .research-theme-panel > div:last-child,
   .research-publications-panel { padding: 26px 22px; }
   .research-theme-art { min-height: 155px; }
@@ -1071,6 +1068,211 @@ button { color: inherit; }
   .event-paper-card > span,
   .event-paper-card-wide > span { grid-column: 1; }
   .positions-page .positions-page-hero h1 { font-size: clamp(2.7rem, 12vw, 4.15rem); }
+}
+
+/* July 2026 editorial refinements */
+.home-page .hero h1 {
+  max-width: 780px;
+  font-size: clamp(2.85rem, 4.15vw, 4.55rem);
+  font-style: normal;
+  line-height: .94;
+}
+.home-page .hero-title-line {
+  display: block;
+  font-style: normal;
+  white-space: nowrap;
+}
+.home-page .hero-title-line + .hero-title-line { margin-top: .08em; }
+.home-page .hero-lede { margin-bottom: 0; }
+
+.section-page-hero .positions-page-hero-inner,
+.research-page-hero .positions-page-hero-inner {
+  width: 100%;
+  text-align: center;
+}
+.section-page-hero h1,
+.research-page-hero h1 {
+  max-width: none;
+  margin-inline: auto;
+  color: var(--white);
+  font-style: normal;
+  text-align: center;
+  text-shadow: 0 8px 28px rgba(0,22,49,.28);
+}
+.section-page-hero h1 em,
+.research-page-hero h1 em { color: inherit; font-style: normal; }
+
+/* Official DUT School of Mathematical Sciences website banner photograph. */
+.people-page-hero {
+  min-height: 390px !important;
+  isolation: isolate;
+  background-image: linear-gradient(90deg, rgba(0,33,70,.84), rgba(0,51,102,.62)), url("assets/dlade-members-campus-real.webp") !important;
+  background-position: center 46% !important;
+  background-size: cover !important;
+}
+.people-page-hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  height: 5px;
+  background: var(--yellow);
+}
+.campus-hero-shade {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(circle at 50% 46%, transparent, rgba(0,25,55,.2));
+}
+.people-page-hero h1,
+.activities-page-hero h1,
+.research-page-hero h1 {
+  font-size: clamp(2.85rem, 5vw, 4.75rem) !important;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1;
+}
+
+.research-page-hero {
+  min-height: 390px;
+  padding-block: 132px 70px;
+  background-image: linear-gradient(90deg, rgba(0,38,78,.9), rgba(0,51,102,.74)), url("assets/dlade-research-phenomena.webp");
+  background-position: center 56%;
+  background-size: cover;
+}
+.research-hero-layout {
+  min-height: 180px;
+  grid-template-columns: 1fr;
+  place-items: center;
+  padding-top: 0;
+}
+
+.research-page-layout,
+.activities-page-layout {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(42px, 6vw, 82px);
+}
+.page-side-nav {
+  position: sticky;
+  z-index: 5;
+  top: 106px;
+  align-self: start;
+  max-height: calc(100vh - 128px);
+  overflow-y: auto;
+  display: grid;
+  padding: 22px 0;
+  border-top: 3px solid var(--yellow);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.page-side-nav > span {
+  margin-bottom: 12px;
+  color: var(--blue);
+  font-size: .6rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.page-side-nav a {
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .68rem;
+  line-height: 1.45;
+  transition: color .2s ease, padding-left .2s ease;
+}
+.page-side-nav a:hover,
+.page-side-nav a:focus-visible { padding-left: 7px; color: var(--blue); }
+
+.research-publications-panel > header { justify-content: flex-start; }
+.research-publications-panel > header p { display: none; }
+
+.activities-page-hero { min-height: 360px; }
+.activities-directory { background: var(--paper); }
+.activities-stream { display: grid; gap: 92px; }
+.activities-block { scroll-margin-top: 112px; }
+.activities-block + .activities-block { padding-top: 52px; border-top: 1px solid var(--line); }
+.teaching-card {
+  display: grid;
+  grid-template-columns: .72fr 1.65fr .85fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--blue);
+  background: var(--white);
+  box-shadow: 0 16px 40px rgba(0,51,102,.08);
+}
+.teaching-field,
+.teaching-course { min-height: 180px; padding: 30px; }
+.teaching-field + .teaching-course,
+.teaching-course + .teaching-field { border-left: 1px solid var(--line); }
+.teaching-card span {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--blue);
+  font-size: .61rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.teaching-field strong { display: block; color: var(--navy); font-family: var(--serif); font-size: 1.45rem; font-weight: 400; line-height: 1.2; }
+.teaching-field small { display: block; margin-top: 8px; color: var(--muted); font-size: .72rem; }
+.teaching-course h3 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(1.55rem, 2.7vw, 2.3rem); font-weight: 400; line-height: 1.12; }
+.teaching-course p { margin: 14px 0 0; color: var(--muted); font-size: .78rem; }
+.teaching-card > a { grid-column: 1 / -1; padding: 17px 30px; border-top: 1px solid var(--line); color: var(--blue); font-size: .66rem; font-weight: 700; }
+.teaching-card > a:hover { color: var(--navy); background: #f5f9fc; }
+
+.application-brief { display: grid; gap: 25px; }
+.application-brief h2 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 400; letter-spacing: -.035em; line-height: 1.04; }
+.application-brief > div > p { max-width: 850px; margin: 20px 0 0; color: var(--text); font-size: .78rem; line-height: 1.78; }
+.application-terms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid var(--line); }
+.application-terms li { position: relative; padding: 17px 22px 17px 36px; color: var(--muted); font-size: .69rem; line-height: 1.45; }
+.application-terms li + li { border-left: 1px solid var(--line); }
+.application-terms li::before { content: ""; position: absolute; left: 20px; top: 1.42em; width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); }
+.document-list-panel { margin-top: 26px; padding: 28px; border: 1px solid var(--line); border-top: 4px solid var(--blue); background: var(--white); box-shadow: 0 14px 36px rgba(0,51,102,.07); }
+.document-list-panel > h3 { margin: 0 0 20px; color: var(--blue); font-size: .65rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.document-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.document-list li { position: relative; min-height: 86px; padding: 19px 12px 19px 23px; border-top: 1px solid var(--line); }
+.document-list li::before { content: ""; position: absolute; left: 0; top: 25px; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 5px rgba(255,204,0,.13); }
+.document-list h4 { margin: 0 0 7px; color: var(--navy); font-family: var(--serif); font-size: 1.12rem; font-weight: 400; }
+.document-list p { margin: 0; color: var(--muted); font-size: .66rem; line-height: 1.58; }
+.positions-international-support > a { max-width: 190px; }
+
+@media (max-width: 1000px) {
+  .research-page-layout,
+  .activities-page-layout { grid-template-columns: 160px minmax(0, 1fr); gap: 38px; }
+  .teaching-card { grid-template-columns: 1fr 1.4fr; }
+  .teaching-field:last-of-type { grid-column: 1 / -1; min-height: auto; border-left: 0; border-top: 1px solid var(--line); }
+}
+
+@media (max-width: 900px) {
+  .research-page-layout,
+  .activities-page-layout { grid-template-columns: 1fr; }
+  .page-side-nav { position: static; max-height: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 14px; }
+  .page-side-nav > span { grid-column: 1 / -1; }
+  .research-page-hero { padding-block: 118px 64px; }
+}
+
+@media (max-width: 640px) {
+  .home-page .hero h1 { font-size: clamp(2rem, 9.6vw, 2.65rem); letter-spacing: -.055em; }
+  .home-page .hero-layout { min-height: auto; padding-block: 72px 58px; }
+  .home-page .hero-title-line { white-space: nowrap; }
+  .people-page-hero { min-height: 310px !important; background-position: 58% center !important; }
+  .people-page-hero h1,
+  .activities-page-hero h1,
+  .research-page-hero h1 { font-size: clamp(2.45rem, 12vw, 3.55rem) !important; }
+  .page-side-nav { grid-template-columns: 1fr; }
+  .page-side-nav > span { grid-column: auto; }
+  .teaching-card { grid-template-columns: 1fr; }
+  .teaching-field,
+  .teaching-course { min-height: auto; padding: 24px 22px; }
+  .teaching-field + .teaching-course,
+  .teaching-course + .teaching-field { border-left: 0; border-top: 1px solid var(--line); }
+  .application-terms,
+  .document-list { grid-template-columns: 1fr; }
+  .application-terms li + li { border-left: 0; border-top: 1px solid var(--line); }
+  .document-list-panel { padding: 24px 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

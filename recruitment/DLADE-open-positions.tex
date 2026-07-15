@@ -58,12 +58,16 @@
 
 % ---------- Reusable visual components ----------
 \newcommand{\DLADELogo}{%
-  \begin{tikzpicture}[baseline=-1.2mm,x=1mm,y=1mm]
-    \draw[white,line width=.45mm] (6,6) circle (6);
-    \draw[white,line width=.35mm,line cap=round] (2.7,2.7)--(9,9.2);
-    \draw[white,line width=.35mm,line cap=round] (3.4,9)--(8.6,3.4);
-    \fill[DLADEYellow] (10,8) circle (1.1);
-    \node[anchor=west,text=white,font=\DisplayFont\bfseries\fontsize{15}{15}\selectfont] at (15,5.4) {DLADE};
+  \begin{tikzpicture}[baseline=-1.2mm,x=.25mm,y=.25mm]
+    \draw[white,line width=.425mm,line cap=round,line join=round] (24,24) circle (21);
+    \draw[white,line width=.425mm,line cap=round,line join=round]
+      (13,17) .. controls (17,30) and (23,34) .. (35,30);
+    \draw[white,line width=.425mm,line cap=round,line join=round]
+      (12,23) .. controls (20,21) and (26,16) .. (31,9);
+    \draw[white,line width=.425mm,line cap=round,line join=round]
+      (18,38) .. controls (16,27) and (19,17) .. (30,10);
+    \fill[DLADEYellow] (34,30) circle (3);
+    \node[anchor=west,text=white,font=\DisplayFont\bfseries\fontsize{15}{15}\selectfont] at (60,21.6) {DLADE};
   \end{tikzpicture}%
 }
 
