@@ -152,8 +152,8 @@ const buildPeopleTable = () => {
     const direction = document.createElement('span');
     direction.className = 'table-community';
     direction.textContent = card.dataset.area === 'analysis-pde'
-      ? 'Analysis & partial differential equations'
-      : 'Dynamical systems & geometry';
+      ? 'Analysis & PDE'
+      : 'Dynamics & Geometry';
     directionCell.append(direction);
 
     const linksCell = document.createElement('td');

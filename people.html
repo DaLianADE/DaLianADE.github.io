@@ -65,7 +65,9 @@
 
     <section class="section people-section" id="people" aria-label="People directory">
       <div class="shell">
-        <div class="people-toolbar reveal" aria-label="People directory controls">
+        <div class="people-directory-layout">
+        <aside class="people-toolbar reveal" aria-label="People directory controls">
+          <p class="people-toolbar-title">Filter people</p>
           <label class="people-search" for="people-search">
             <span>Search people</span>
             <span class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="people-search" type="search" placeholder="Name, role or research area…" autocomplete="off"></span>
@@ -84,9 +86,9 @@
           <label class="people-filter" for="people-area-filter">
             <span>Research direction</span>
             <select id="people-area-filter">
-              <option value="all">All research directions</option>
-              <option value="analysis-pde">Analysis &amp; partial differential equations</option>
-              <option value="dynamics-geometry">Dynamical systems &amp; geometry</option>
+              <option value="all">All directions</option>
+              <option value="analysis-pde">Analysis &amp; PDE</option>
+              <option value="dynamics-geometry">Dynamics &amp; Geometry</option>
             </select>
           </label>
           <div class="people-view-control" role="group" aria-label="Directory view">
@@ -97,8 +99,9 @@
             </div>
           </div>
           <p id="people-results" class="people-results" role="status" aria-live="polite">Showing all 14 people</p>
-        </div>
+        </aside>
 
+        <div class="people-directory-content">
         <div id="people-card-view" hidden>
           <div class="people-group" id="faculty" data-people-group="faculty">
             <div class="group-banner reveal">
@@ -219,6 +222,8 @@
           <strong>No matching people</strong>
           <p>Try a different name, role or research term.</p>
           <button type="button" id="people-reset">Reset filters</button>
+        </div>
+        </div>
         </div>
       </div>
     </section>
