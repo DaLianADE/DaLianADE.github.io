@@ -726,8 +726,8 @@ button { color: inherit; }
 .positions-page-hero .positions-orbit { right: -170px; top: -150px; }
 .positions-page-hero-inner { position: relative; z-index: 2; }
 .positions-page-index { margin: 0 0 20px; color: rgba(255,255,255,.52); font-size: .63rem; font-weight: 800; letter-spacing: .17em; }
-.positions-page-hero h1 { max-width: 900px; margin: 0; font-family: var(--serif); font-size: clamp(3.8rem, 7vw, 7rem); font-weight: 400; letter-spacing: -.045em; line-height: .93; }
-.positions-page-hero h1 em { color: var(--yellow); font-weight: 400; }
+.positions-page-hero h1 { max-width: 900px; margin: 0; color: var(--white); font-family: var(--serif); font-size: clamp(3.8rem, 7vw, 7rem); font-style: normal; font-weight: 400; letter-spacing: -.045em; line-height: .93; }
+.positions-page-hero h1 em { color: inherit; font-style: inherit; font-weight: 400; }
 .positions-page-hero-inner > p:nth-of-type(3) { max-width: 690px; margin: 28px 0 34px; color: rgba(255,255,255,.68); font-size: .92rem; line-height: 1.8; }
 
 .positions-detail { background: var(--paper); }
@@ -1102,12 +1102,12 @@ button { color: inherit; }
 .section-page-hero h1 em,
 .research-page-hero h1 em { color: inherit; font-style: normal; }
 
-/* Official DUT School of Mathematical Sciences website banner photograph. */
+/* Official DUT Infrastructure Department panorama of Ling Shui Lake. */
 .people-page-hero {
   min-height: 390px !important;
   isolation: isolate;
-  background-image: linear-gradient(90deg, rgba(0,33,70,.84), rgba(0,51,102,.62)), url("assets/dlade-members-campus-real.webp") !important;
-  background-position: center 46% !important;
+  background-image: linear-gradient(90deg, rgba(0,33,70,.84), rgba(0,51,102,.62)), url("assets/dlade-members-lingshui-lake.jpg") !important;
+  background-position: center 54% !important;
   background-size: cover !important;
 }
 .people-page-hero::after {
