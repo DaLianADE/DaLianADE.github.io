@@ -1,0 +1,44 @@
+name: Build recruitment PDF from TeX
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - recruitment/DLADE-open-positions.tex
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recruitment-pdf
+  cancel-in-progress: true
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compile the canonical XeLaTeX source
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: recruitment/DLADE-open-positions.tex
+          latexmk_use_xelatex: true
+
+      - name: Publish the generated website PDF
+        run: cp recruitment/DLADE-open-positions.pdf assets/DLADE-open-positions.pdf
+
+      - name: Commit an updated PDF when content changed
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/DLADE-open-positions.pdf; then
+            echo "The generated PDF is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/DLADE-open-positions.pdf
+          git commit -m "build: update recruitment PDF from TeX"
+          git push

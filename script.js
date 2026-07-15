@@ -86,7 +86,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 
 const peopleCards = [...document.querySelectorAll('[data-person]')];
 const peopleSearch = document.querySelector('#people-search');
-const peopleRoleFilter = document.querySelector('#people-role-filter');
+const peopleAreaFilter = document.querySelector('#people-area-filter');
 const peopleResults = document.querySelector('#people-results');
 const peopleCardView = document.querySelector('#people-card-view');
 const peopleTableView = document.querySelector('#people-table-view');
@@ -94,10 +94,17 @@ const peopleTableBody = document.querySelector('#people-table tbody');
 const peopleEmpty = document.querySelector('#people-empty');
 const peopleViewButtons = [...document.querySelectorAll('[data-people-view]')];
 const peopleGroups = [...document.querySelectorAll('[data-people-group]')];
-let currentPeopleView = 'cards';
+let currentPeopleView = 'table';
 let peopleRows = [];
 
 const getText = (element, selector) => element.querySelector(selector)?.textContent.trim() || '';
+
+const arrangePeopleByResearchArea = () => {
+  peopleCards.forEach((card) => {
+    const targetList = document.querySelector(`#${card.dataset.area} .people-list`);
+    targetList?.append(card);
+  });
+};
 
 const buildPeopleTable = () => {
   if (!peopleTableBody || !peopleCards.length) return;
@@ -106,6 +113,7 @@ const buildPeopleTable = () => {
   peopleRows = peopleCards.map((card) => {
     const row = document.createElement('tr');
     row.dataset.group = card.dataset.group;
+    row.dataset.area = card.dataset.area;
     row.dataset.role = card.dataset.role;
     row.dataset.search = card.textContent.toLocaleLowerCase();
 
@@ -130,11 +138,13 @@ const buildPeopleTable = () => {
     const researchCell = document.createElement('td');
     researchCell.textContent = getText(card, '.person-research');
 
-    const communityCell = document.createElement('td');
-    const community = document.createElement('span');
-    community.className = 'table-community';
-    community.textContent = card.dataset.group === 'faculty' ? 'Faculty' : 'Junior researcher';
-    communityCell.append(community);
+    const directionCell = document.createElement('td');
+    const direction = document.createElement('span');
+    direction.className = 'table-community';
+    direction.textContent = card.dataset.area === 'analysis-pde'
+      ? 'Analysis & partial differential equations'
+      : 'Dynamical systems & geometry';
+    directionCell.append(direction);
 
     const linksCell = document.createElement('td');
     const links = card.querySelector('.person-links')?.cloneNode(true);
@@ -145,7 +155,7 @@ const buildPeopleTable = () => {
       linksCell.textContent = '—';
     }
 
-    row.append(nameCell, roleCell, researchCell, communityCell, linksCell);
+    row.append(nameCell, roleCell, researchCell, directionCell, linksCell);
     fragment.append(row);
     return row;
   });
@@ -156,16 +166,14 @@ const buildPeopleTable = () => {
 const matchesPeopleFilter = (cardOrRow, query, filter) => {
   const searchText = (cardOrRow.dataset.search || cardOrRow.textContent).toLocaleLowerCase();
   const matchesQuery = !query || searchText.includes(query);
-  const matchesRole = filter === 'all'
-    || cardOrRow.dataset.group === filter
-    || cardOrRow.dataset.role === filter;
-  return matchesQuery && matchesRole;
+  const matchesArea = filter === 'all' || cardOrRow.dataset.area === filter;
+  return matchesQuery && matchesArea;
 };
 
 const updatePeopleDirectory = () => {
   if (!peopleCards.length) return;
   const query = peopleSearch?.value.trim().toLocaleLowerCase() || '';
-  const filter = peopleRoleFilter?.value || 'all';
+  const filter = peopleAreaFilter?.value || 'all';
   let visibleCount = 0;
 
   peopleCards.forEach((card) => {
@@ -206,24 +214,25 @@ const setPeopleView = (view) => {
 };
 
 if (peopleCards.length) {
+  arrangePeopleByResearchArea();
   buildPeopleTable();
   const initialGroup = window.location.hash.slice(1);
-  if (peopleRoleFilter && ['faculty', 'junior'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
-  updatePeopleDirectory();
+  if (peopleAreaFilter && ['analysis-pde', 'dynamics-geometry'].includes(initialGroup)) peopleAreaFilter.value = initialGroup;
+  setPeopleView('table');
   peopleSearch?.addEventListener('input', updatePeopleDirectory);
-  peopleRoleFilter?.addEventListener('change', updatePeopleDirectory);
+  peopleAreaFilter?.addEventListener('change', updatePeopleDirectory);
   peopleViewButtons.forEach((button) => button.addEventListener('click', () => setPeopleView(button.dataset.peopleView)));
   document.querySelector('#people-reset')?.addEventListener('click', () => {
     if (peopleSearch) peopleSearch.value = '';
-    if (peopleRoleFilter) peopleRoleFilter.value = 'all';
+    if (peopleAreaFilter) peopleAreaFilter.value = 'all';
     updatePeopleDirectory();
     peopleSearch?.focus();
   });
 
-  document.querySelectorAll('a[href$="#faculty"], a[href$="#junior"]').forEach((link) => {
+  document.querySelectorAll('a[href$="#analysis-pde"], a[href$="#dynamics-geometry"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const group = link.hash.slice(1);
-      if (peopleRoleFilter) peopleRoleFilter.value = group;
+      if (peopleAreaFilter) peopleAreaFilter.value = group;
       updatePeopleDirectory();
       event.preventDefault();
       history.pushState(null, '', `#${group}`);

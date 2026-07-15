@@ -34,12 +34,15 @@
         <a class="nav-link" href="index.html#home">Home</a>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct active" href="people.html" data-dropdown-link aria-current="page" aria-expanded="false" aria-haspopup="true" aria-controls="people-menu">People <span class="nav-chevron" aria-hidden="true">⌄</span></a>
-          <div class="nav-submenu" id="people-menu" role="menu">
-            <a href="people.html#faculty" role="menuitem"><span>01</span>Faculty members</a>
-            <a href="people.html#junior" role="menuitem"><span>02</span>Junior researchers</a>
+          <div class="nav-submenu nav-submenu-wide" id="people-menu" role="menu">
+            <a href="people.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a>
+            <a href="people.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a>
           </div>
         </div>
-        <a class="nav-link" href="research.html">Research</a>
+        <div class="nav-dropdown" data-dropdown>
+          <a class="nav-link nav-dropdown-direct" href="research.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="research-menu">Research <span class="nav-chevron" aria-hidden="true">⌄</span></a>
+          <div class="nav-submenu nav-submenu-wide" id="research-menu" role="menu"><a href="research.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a><a href="research.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a></div>
+        </div>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct" href="activities.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="activities-menu">Activities <span class="nav-chevron" aria-hidden="true">⌄</span></a>
           <div class="nav-submenu nav-submenu-wide" id="activities-menu" role="menu">
@@ -57,63 +60,42 @@
     <section class="positions-page-hero" aria-labelledby="people-hero-title">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="positions-orbit" aria-hidden="true"></div>
-      <div class="shell positions-page-hero-inner reveal">
-        <p class="eyebrow light"><span></span> The DLADE community</p>
-        <p class="positions-page-index">PEOPLE · FACULTY · JUNIOR RESEARCHERS</p>
-        <h1 id="people-hero-title">People shaping<br><em>the mathematics.</em></h1>
-        <p>Meet the faculty members and junior researchers working together across analysis, differential equations, fluid mechanics and dynamical systems.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#faculty">Meet the faculty <span aria-hidden="true">↓</span></a>
-          <a class="button button-ghost" href="#junior">Meet junior researchers <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
+      <div class="shell positions-page-hero-inner reveal"><h1 id="people-hero-title">Research <em>Members.</em></h1></div>
     </section>
 
-    <section class="section people-section" id="people" aria-labelledby="people-title">
+    <section class="section people-section" id="people" aria-label="People directory">
       <div class="shell">
-        <div class="section-heading people-heading reveal">
-          <div>
-            <p class="eyebrow dark"><span></span> People directory</p>
-            <h2 id="people-title">Find a colleague.<br>Follow an idea.</h2>
-          </div>
-          <p>Browse the group as profile cards or a compact table. Search by name, position or research interest, and filter by community.</p>
-        </div>
-
         <div class="people-toolbar reveal" aria-label="People directory controls">
           <label class="people-search" for="people-search">
             <span>Search people</span>
             <span class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 5 5"></path></svg><input id="people-search" type="search" placeholder="Name, role or research area…" autocomplete="off"></span>
           </label>
-          <label class="people-filter" for="people-role-filter">
-            <span>Community / status</span>
-            <select id="people-role-filter">
-              <option value="all">All people</option>
-              <option value="faculty">Faculty members</option>
-              <option value="junior">Junior researchers</option>
-              <option value="postdoc">Postdoctoral fellows</option>
-              <option value="phd">PhD researchers</option>
-              <option value="master">Master’s students</option>
+          <label class="people-filter" for="people-area-filter">
+            <span>Research direction</span>
+            <select id="people-area-filter">
+              <option value="all">All research directions</option>
+              <option value="analysis-pde">Analysis &amp; partial differential equations</option>
+              <option value="dynamics-geometry">Dynamical systems &amp; geometry</option>
             </select>
           </label>
           <div class="people-view-control" role="group" aria-label="Directory view">
             <span>Display</span>
             <div>
-              <button class="view-button active" type="button" data-people-view="cards" aria-pressed="true"><span aria-hidden="true">▦</span> Cards</button>
-              <button class="view-button" type="button" data-people-view="table" aria-pressed="false"><span aria-hidden="true">☷</span> Table</button>
+              <button class="view-button" type="button" data-people-view="cards" aria-pressed="false"><span aria-hidden="true">▦</span> Cards</button>
+              <button class="view-button active" type="button" data-people-view="table" aria-pressed="true"><span aria-hidden="true">☷</span> Table</button>
             </div>
           </div>
           <p id="people-results" class="people-results" role="status" aria-live="polite">Showing all 14 people</p>
         </div>
 
-        <div id="people-card-view">
-          <div class="people-group" id="faculty" data-people-group="faculty">
+        <div id="people-card-view" hidden>
+          <div class="people-group" id="analysis-pde" data-people-group="analysis-pde">
             <div class="group-banner reveal">
-              <div><span class="group-number">I</span><h3>Faculty members</h3></div>
-              <p>Permanent academic staff guiding the group’s research direction and mentoring programme.</p>
+              <div><h3>Analysis &amp; Partial Differential Equations</h3></div>
             </div>
 
             <div class="people-grid people-list faculty-list">
-              <article class="person-card reveal" data-person data-group="faculty" data-role="professor">
+              <article class="person-card reveal" data-person data-group="faculty" data-area="analysis-pde" data-role="professor">
                 <div class="portrait portrait-blue"><span>EM</span><small>PI</small></div>
                 <div class="person-info">
                   <p class="person-role">Professor · Group director</p>
@@ -122,7 +104,7 @@
                   <div class="person-links profile-links"><a href="#" aria-label="Elena Marin personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="80" data-person data-group="faculty" data-role="professor">
+              <article class="person-card reveal" data-delay="80" data-person data-group="faculty" data-area="analysis-pde" data-role="professor">
                 <div class="portrait portrait-gold"><span>MZ</span></div>
                 <div class="person-info">
                   <p class="person-role">Professor</p>
@@ -131,7 +113,7 @@
                   <div class="person-links profile-links"><a href="#" aria-label="Marcus Zhou personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="120" data-person data-group="faculty" data-role="associate">
+              <article class="person-card reveal" data-delay="120" data-person data-group="faculty" data-area="analysis-pde" data-role="associate">
                 <div class="portrait portrait-cyan"><span>PN</span></div>
                 <div class="person-info">
                   <p class="person-role">Associate professor</p>
@@ -140,7 +122,7 @@
                   <div class="person-links profile-links"><a href="#" aria-label="Priya Nair personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="160" data-person data-group="faculty" data-role="associate">
+              <article class="person-card reveal" data-delay="160" data-person data-group="faculty" data-area="dynamics-geometry" data-role="associate">
                 <div class="portrait portrait-ink"><span>DK</span></div>
                 <div class="person-info">
                   <p class="person-role">Associate professor</p>
@@ -149,7 +131,7 @@
                   <div class="person-links profile-links"><a href="#" aria-label="Daniel Kim personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="200" data-person data-group="faculty" data-role="assistant">
+              <article class="person-card reveal" data-delay="200" data-person data-group="faculty" data-area="analysis-pde" data-role="assistant">
                 <div class="portrait portrait-coral"><span>SA</span></div>
                 <div class="person-info">
                   <p class="person-role">Assistant professor</p>
@@ -158,7 +140,7 @@
                   <div class="person-links profile-links"><a href="#" aria-label="Sofia Alvarez personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="240" data-person data-group="faculty" data-role="assistant" data-name-zh="林伟">
+              <article class="person-card reveal" data-delay="240" data-person data-group="faculty" data-area="dynamics-geometry" data-role="assistant" data-name-zh="林伟">
                 <div class="portrait portrait-sky"><span>LW</span></div>
                 <div class="person-info">
                   <p class="person-role">Assistant professor</p>
@@ -170,42 +152,41 @@
             </div>
           </div>
 
-          <div class="people-group junior-group" id="junior" data-people-group="junior">
+          <div class="people-group junior-group" id="dynamics-geometry" data-people-group="dynamics-geometry">
             <div class="group-banner reveal">
-              <div><span class="group-number">II</span><h3>Junior researchers</h3></div>
-              <p>Postdoctoral fellows and graduate students developing independent ideas within a shared programme.</p>
+              <div><h3>Dynamical Systems &amp; Geometry</h3></div>
             </div>
 
             <div class="people-grid people-list junior-list">
-              <article class="person-card compact reveal" data-person data-group="junior" data-role="postdoc">
+              <article class="person-card compact reveal" data-person data-group="junior" data-area="analysis-pde" data-role="postdoc">
                 <div class="portrait portrait-violet"><span>AH</span></div>
                 <div class="person-info"><p class="person-role">Postdoctoral fellow · 2025–27</p><h5 class="person-name"><span class="person-name-en">Amira Hassan</span></h5><p class="person-research">Boundary layers &amp; singular limits</p><div class="person-links"><a href="mailto:amira.hassan@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="50" data-person data-group="junior" data-role="postdoc">
+              <article class="person-card compact reveal" data-delay="50" data-person data-group="junior" data-area="analysis-pde" data-role="postdoc">
                 <div class="portrait portrait-mint"><span>LB</span></div>
                 <div class="person-info"><p class="person-role">Postdoctoral fellow · 2026–28</p><h5 class="person-name"><span class="person-name-en">Leo Berg</span></h5><p class="person-research">Free-boundary problems &amp; nonlinear PDEs</p><div class="person-links"><a href="mailto:leo.berg@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="100" data-person data-group="junior" data-role="phd">
+              <article class="person-card compact reveal" data-delay="100" data-person data-group="junior" data-area="analysis-pde" data-role="phd">
                 <div class="portrait portrait-cyan"><span>NC</span></div>
                 <div class="person-info"><p class="person-role">PhD candidate · Year 4</p><h5 class="person-name"><span class="person-name-en">Noor Chen</span></h5><p class="person-research">Water waves &amp; interfaces</p><div class="person-links"><a href="mailto:noor.chen@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="150" data-person data-group="junior" data-role="phd">
+              <article class="person-card compact reveal" data-delay="150" data-person data-group="junior" data-area="dynamics-geometry" data-role="phd">
                 <div class="portrait portrait-gold"><span>JR</span></div>
                 <div class="person-info"><p class="person-role">PhD student · Year 3</p><h5 class="person-name"><span class="person-name-en">Jonas Reed</span></h5><p class="person-research">Hamiltonian systems &amp; celestial mechanics</p><div class="person-links"><a href="mailto:jonas.reed@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="200" data-person data-group="junior" data-role="phd">
+              <article class="person-card compact reveal" data-delay="200" data-person data-group="junior" data-area="analysis-pde" data-role="phd">
                 <div class="portrait portrait-sky"><span>IT</span></div>
                 <div class="person-info"><p class="person-role">PhD student · Year 2</p><h5 class="person-name"><span class="person-name-en">Idris Tan</span></h5><p class="person-research">Kinetic equations &amp; transport</p><div class="person-links"><a href="mailto:idris.tan@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="250" data-person data-group="junior" data-role="master">
+              <article class="person-card compact reveal" data-delay="250" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
                 <div class="portrait portrait-coral"><span>MS</span></div>
                 <div class="person-info"><p class="person-role">Master’s student · Year 2</p><h5 class="person-name"><span class="person-name-en">Mayumi Sato</span></h5><p class="person-research">Integrable systems &amp; dispersive equations</p><div class="person-links"><a href="mailto:mayumi.sato@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="300" data-person data-group="junior" data-role="master">
+              <article class="person-card compact reveal" data-delay="300" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
                 <div class="portrait portrait-ink"><span>AO</span></div>
                 <div class="person-info"><p class="person-role">Master’s student · Year 2</p><h5 class="person-name"><span class="person-name-en">Alex Okafor</span></h5><p class="person-research">Symplectic geometry &amp; mathematical physics</p><div class="person-links"><a href="mailto:alex.okafor@university.edu">Email</a></div></div>
               </article>
-              <article class="person-card compact reveal" data-delay="350" data-person data-group="junior" data-role="master">
+              <article class="person-card compact reveal" data-delay="350" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
                 <div class="portrait portrait-violet"><span>YC</span></div>
                 <div class="person-info"><p class="person-role">Master’s student · Year 1</p><h5 class="person-name"><span class="person-name-en">Yuna Choi</span></h5><p class="person-research">Nonlinear dynamics &amp; stability</p><div class="person-links"><a href="mailto:yuna.choi@university.edu">Email</a></div></div>
               </article>
@@ -213,11 +194,11 @@
           </div>
         </div>
 
-        <div id="people-table-view" class="people-table-view" hidden>
+        <div id="people-table-view" class="people-table-view">
           <div class="people-table-scroll">
             <table id="people-table">
               <caption class="sr-only">DLADE people directory</caption>
-              <thead><tr><th scope="col">Name</th><th scope="col">Position / status</th><th scope="col">Research interests</th><th scope="col">Community</th><th scope="col">Links</th></tr></thead>
+              <thead><tr><th scope="col">Name</th><th scope="col">Position / status</th><th scope="col">Research interests</th><th scope="col">Research direction</th><th scope="col">Links</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>
@@ -235,7 +216,7 @@
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"></circle><path d="M13 31c4-13 10-17 22-13M12 25c8 2 14 7 19 14M18 10c-2 11 1 21 12 28"></path><circle cx="34" cy="18" r="3"></circle></svg><div><strong>DLADE</strong><p>School of Mathematical Sciences<br>DUT — Dalian University of Technology</p></div></div>
-      <div class="footer-contact"><span>Contact</span><span class="contact-email">wangmeiyan <strong>(at)</strong> mail.dlut.edu.cn</span><p>School of Mathematical Sciences<br>Dalian University of Technology<br>No. 2 Linggong Road, Ganjingzi District<br>Dalian 116024, Liaoning, China</p></div>
+      <div class="footer-contact"><span>Contact</span><span class="contact-email">dalianade<strong>(at)</strong> foxmail.com</span><p>School of Mathematical Sciences<br>Dalian University of Technology<br>No. 2 Linggong Road, Ganjingzi District<br>Dalian 116024, Liaoning, China</p></div>
       <div class="footer-links"><span>Explore</span><a href="people.html">People</a><a href="research.html">Research</a><a href="activities.html">Activities</a><a href="positions.html">Open positions</a></div>
       <div class="footer-links"><span>Connect</span><a href="https://www.dlut.edu.cn/" target="_blank" rel="noreferrer">Dalian University of Technology ↗</a><a href="https://math.dlut.edu.cn/" target="_blank" rel="noreferrer">School of Mathematical Sciences ↗</a><a href="https://dutdynamics.github.io/ddes/" target="_blank" rel="noreferrer">DDES Seminar ↗</a><a href="https://dutdynamics.github.io/ds/" target="_blank" rel="noreferrer">Dynamics Seminar ↗</a></div>
     </div>

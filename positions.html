@@ -34,18 +34,20 @@
         <a class="nav-link" href="index.html#home">Home</a>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct" href="people.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="people-menu"><span>People</span><span class="nav-chevron" aria-hidden="true">⌄</span></a>
-          <div class="nav-submenu" id="people-menu" role="menu">
-            <a href="people.html#faculty" role="menuitem"><span>01</span>Faculty members</a>
-            <a href="people.html#junior" role="menuitem"><span>02</span>Junior researchers</a>
+          <div class="nav-submenu nav-submenu-wide" id="people-menu" role="menu">
+            <a href="people.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a>
+            <a href="people.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a>
           </div>
         </div>
-        <a class="nav-link" href="research.html">Research</a>
+        <div class="nav-dropdown" data-dropdown>
+          <a class="nav-link nav-dropdown-direct" href="research.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="research-menu">Research <span class="nav-chevron" aria-hidden="true">⌄</span></a>
+          <div class="nav-submenu nav-submenu-wide" id="research-menu" role="menu"><a href="research.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a><a href="research.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a></div>
+        </div>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct" href="activities.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="activities-menu"><span>Activities</span><span class="nav-chevron" aria-hidden="true">⌄</span></a>
           <div class="nav-submenu nav-submenu-wide" id="activities-menu" role="menu">
-            <a href="https://dutdynamics.github.io/ddes/" target="_blank" rel="noreferrer" role="menuitem"><span>DDES</span>Differential Equations Seminar</a>
-            <a href="https://dutdynamics.github.io/ds/" target="_blank" rel="noreferrer" role="menuitem"><span>DS</span>DUT Dynamics Seminar</a>
-            <a href="https://jiashunliu.github.io/Analysis_in_Dalian/index.html" target="_blank" rel="noreferrer" role="menuitem"><span>2026</span>Analysis of PDEs in Dalian</a>
+            <a href="activities.html#weekly-seminars" role="menuitem"><span>Weekly</span>DDES &amp; DS seminars</a>
+            <a href="activities.html#past-events" role="menuitem"><span>Archive</span>Past workshops</a>
           </div>
         </div>
         <a class="nav-link nav-cta active" href="positions.html" aria-current="page">Open positions</a>
@@ -58,9 +60,7 @@
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="positions-orbit" aria-hidden="true"></div>
       <div class="shell positions-page-hero-inner reveal">
-        <p class="eyebrow light"><span></span> Join DLADE</p>
-        <p class="positions-page-index">3 PHD + 4 POSTDOC POSITIONS · APPLIED MATHEMATICS</p>
-        <h1>Open PhD &amp; postdoc<br><em>positions in Dalian.</em></h1>
+        <h1>Open PhD &amp; postdoc <em>positions.</em></h1>
         <p>We welcome applications for three PhD and four postdoctoral positions at the School of Mathematical Sciences, Dalian University of Technology. The funding period runs from January 2027 to June 2031, and applications are reviewed on a rolling basis until all positions are filled.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#opportunities">View position details <span aria-hidden="true">→</span></a>
@@ -113,13 +113,13 @@
               <strong>Terms</strong>
               <p>PhD positions are for four years, are research-focused and carry no teaching obligation. A competitive mathematical background is preferred. Enrollment begins from September 2027.</p>
             </div>
-            <ol class="application-steps" aria-label="Required documents for PhD applications">
-              <li><span>1</span><div><h3>Cover letter</h3><p>State your research interests and preferred supervisor.</p></div></li>
-              <li><span>2</span><div><h3>Curriculum vitae</h3><p>Include the contact details of two academic referees.</p></div></li>
-              <li><span>3</span><div><h3>Publication list</h3><p>Include a list of publications, if any.</p></div></li>
-              <li><span>4</span><div><h3>MSc thesis</h3><p>Submit the thesis if available; otherwise, provide a description of the MSc thesis project.</p></div></li>
-              <li><span>5</span><div><h3>Academic records</h3><p>Submit university diplomas or certificates and transcripts of records for BSc and MSc studies, if available.</p></div></li>
-            </ol>
+            <ul class="application-steps unnumbered-steps" aria-label="Required documents for PhD applications">
+              <li><div><h3>Cover letter</h3><p>State your research interests and preferred supervisor.</p></div></li>
+              <li><div><h3>Curriculum vitae</h3><p>Include the contact details of two academic referees.</p></div></li>
+              <li><div><h3>Publication list</h3><p>Include a list of publications, if any.</p></div></li>
+              <li><div><h3>MSc thesis</h3><p>Submit the thesis if available; otherwise, provide a description of the MSc thesis project.</p></div></li>
+              <li><div><h3>Academic records</h3><p>Submit university diplomas or certificates and transcripts of records for BSc and MSc studies, if available.</p></div></li>
+            </ul>
           </section>
 
           <section class="detail-section application-section reveal" id="postdoc-positions" aria-labelledby="postdoc-title">
@@ -128,23 +128,23 @@
               <strong>Terms</strong>
               <p>Postdoc positions are for two years, are research-focused and carry no teaching obligation. A competitive salary is offered. Applicants should be under 32 years old at the time of appointment and have 1-2 publications in internationally recognized journals; arXiv preprints do not count.</p>
             </div>
-            <ol class="application-steps" aria-label="Required documents for postdoctoral applications">
-              <li><span>1</span><div><h3>Cover letter</h3><p>State your research interests and preferred supervisor.</p></div></li>
-              <li><span>2</span><div><h3>Curriculum vitae</h3><p>Include the contact details of two academic referees.</p></div></li>
-              <li><span>3</span><div><h3>Publication list</h3><p>Include your complete list of publications.</p></div></li>
-              <li><span>4</span><div><h3>Research statement</h3><p>Provide a research statement of 2-3 pages.</p></div></li>
-              <li><span>5</span><div><h3>PhD certificate</h3><p>Submit the certificate if available; otherwise, state the expected date of your defense.</p></div></li>
-            </ol>
+            <ul class="application-steps unnumbered-steps" aria-label="Required documents for postdoctoral applications">
+              <li><div><h3>Cover letter</h3><p>State your research interests and preferred supervisor.</p></div></li>
+              <li><div><h3>Curriculum vitae</h3><p>Include the contact details of two academic referees.</p></div></li>
+              <li><div><h3>Publication list</h3><p>Include your complete list of publications.</p></div></li>
+              <li><div><h3>Research statement</h3><p>Provide a research statement of 2-3 pages.</p></div></li>
+              <li><div><h3>PhD certificate</h3><p>Submit the certificate if available; otherwise, state the expected date of your defense.</p></div></li>
+            </ul>
           </section>
 
           <section class="detail-section application-section reveal" id="application" aria-labelledby="application-title">
             <h2 id="application-title">Submit one complete PDF</h2>
-            <ol class="application-steps">
-              <li><span>1</span><div><h3>Prepare the required documents</h3><p>Use the five-item document list for the position to which you are applying.</p></div></li>
-              <li><span>2</span><div><h3>Combine the application</h3><p>Combine all required documents into a single PDF file.</p></div></li>
-              <li><span>3</span><div><h3>Email Ms. Meiyan WANG</h3><p>Send the single PDF to <span class="obfuscated-email">wangmeiyan <strong>(at)</strong> mail.dlut.edu.cn</span>.</p></div></li>
-              <li><span>4</span><div><h3>Rolling review</h3><p>Applications remain open until all positions are filled.</p></div></li>
-            </ol>
+            <ul class="application-steps unnumbered-steps">
+              <li><div><h3>Prepare the required documents</h3><p>Use the five-item document list for the position to which you are applying.</p></div></li>
+              <li><div><h3>Combine the application</h3><p>Combine all required documents into a single PDF file.</p></div></li>
+              <li><div><h3>Email the group</h3><p>Send the single PDF to <span class="obfuscated-email">dalianade<strong>(at)</strong> foxmail.com</span>.</p></div></li>
+              <li><div><h3>Rolling review</h3><p>Applications remain open until all positions are filled.</p></div></li>
+            </ul>
             <div class="application-note">
               <strong>Review dates</strong>
               <p>The first committee meeting will evaluate application materials on August 31, 2026. Subsequent reviews will be conducted every three months.</p>
@@ -179,7 +179,7 @@
       </div>
       <div class="footer-contact">
         <span>Applications</span>
-        <span class="contact-email">wangmeiyan <strong>(at)</strong> mail.dlut.edu.cn</span>
+        <span class="contact-email">dalianade<strong>(at)</strong> foxmail.com</span>
         <p>School of Mathematical Sciences<br>Dalian University of Technology<br>No. 2 Linggong Road, Ganjingzi District<br>Dalian 116024, Liaoning, China</p>
       </div>
       <div class="footer-links"><span>Explore</span><a href="people.html">People</a><a href="research.html">Research</a><a href="activities.html">Activities</a><a href="positions.html">Open positions</a></div>
