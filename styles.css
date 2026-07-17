@@ -1234,7 +1234,7 @@ button { color: inherit; }
 .activities-block + .activities-block { padding-top: 52px; border-top: 1px solid var(--line); }
 .teaching-card {
   display: grid;
-  grid-template-columns: .72fr 1.65fr .85fr;
+  grid-template-columns: 190px minmax(0, 2fr) minmax(300px, 1.05fr);
   gap: 0;
   border: 1px solid var(--line);
   border-top: 4px solid var(--blue);
@@ -1261,13 +1261,13 @@ button { color: inherit; }
 .teaching-card > a { grid-column: 1 / -1; padding: 17px 30px; border-top: 1px solid var(--line); color: var(--blue); font-size: .66rem; font-weight: 700; }
 .teaching-card > a:hover { color: var(--navy); background: #f5f9fc; }
 .teaching-card + .teaching-card { margin-top: 26px; }
-.teaching-field strong b { font-weight: inherit; }
-.teaching-details { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); background: #f7fbff; }
-.teaching-details > div { min-height: 128px; padding: 24px 30px; }
-.teaching-details > div:nth-child(even) { border-left: 1px solid var(--line); }
-.teaching-details > div:nth-child(n + 3) { border-top: 1px solid var(--line); }
-.teaching-details strong { display: block; color: var(--navy); font-family: var(--serif); font-size: 1.05rem; font-weight: 400; line-height: 1.35; }
-.teaching-details small { display: block; margin-top: 7px; color: var(--muted); font-size: .68rem; line-height: 1.5; }
+.teaching-card > .teaching-field:first-child { padding-inline: 24px; }
+.teaching-card > .teaching-field:first-child strong { white-space: nowrap; }
+.teaching-card-special .teaching-course h3 { font-size: clamp(1.45rem, 2.15vw, 2.05rem); line-height: 1.14; }
+.teaching-instructors { padding-inline: 26px; }
+.teaching-instructor-list { display: grid; gap: 20px; }
+.teaching-instructor-list strong { font-size: clamp(1.05rem, 1.55vw, 1.25rem); line-height: 1.25; }
+.teaching-instructor-list small { margin-top: 4px; }
 
 .useful-pdfs-panel { display: block; }
 .useful-pdfs-panel > .useful-pdfs-content { max-width: none; padding-left: 0; border-left: 0; }
@@ -1323,10 +1323,6 @@ button { color: inherit; }
   .teaching-course { min-height: auto; padding: 24px 22px; }
   .teaching-field + .teaching-course,
   .teaching-course + .teaching-field { border-left: 0; border-top: 1px solid var(--line); }
-  .teaching-details { grid-template-columns: 1fr; }
-  .teaching-details > div { min-height: auto; padding: 22px; }
-  .teaching-details > div:nth-child(even) { border-left: 0; }
-  .teaching-details > div + div { border-top: 1px solid var(--line); }
   .useful-pdf-list li { grid-template-columns: 1fr; padding-block: 24px; }
   .useful-pdf-list .button { justify-self: start; }
   .application-terms,
