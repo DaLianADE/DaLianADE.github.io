@@ -142,7 +142,7 @@ const buildPeopleTable = () => {
     const communityCell = document.createElement('td');
     const community = document.createElement('span');
     community.className = 'table-community';
-    community.textContent = card.dataset.group === 'faculty' ? 'Faculty member' : 'Junior researcher';
+    community.textContent = card.dataset.group === 'faculty' ? 'Faculty Member' : 'Junior Researcher';
     communityCell.append(community);
 
     const researchCell = document.createElement('td');
