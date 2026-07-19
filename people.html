@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Faculty members and junior researchers of the Dalian Analysis and Differential Equations Group at Dalian University of Technology.">
+  <meta name="description" content="Faculty members of the Dalian Analysis and Differential Equations Group at Dalian University of Technology.">
   <meta name="theme-color" content="#003366">
   <title>People — DLADE</title>
-    <link rel="stylesheet" href="styles.css?v=20260717a">
+    <link rel="stylesheet" href="styles.css?v=20260719a">
     <link rel="icon" type="image/svg+xml" href="assets/dlade-favicon.svg">
-  <script src="script.js?v=20260717a" defer></script>
+  <script src="script.js?v=20260719a" defer></script>
 </head>
 <body id="top" class="people-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -37,12 +37,11 @@
           <a class="nav-link nav-dropdown-direct active" href="people.html" data-dropdown-link aria-current="page" aria-expanded="false" aria-haspopup="true" aria-controls="people-menu">People <span class="nav-chevron" aria-hidden="true">⌄</span></a>
           <div class="nav-submenu nav-submenu-wide" id="people-menu" role="menu">
             <a href="people.html#faculty" role="menuitem">Faculty members</a>
-            <a href="people.html#junior" role="menuitem">Junior researchers</a>
           </div>
         </div>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct" href="research.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="research-menu">Research <span class="nav-chevron" aria-hidden="true">⌄</span></a>
-          <div class="nav-submenu nav-submenu-wide" id="research-menu" role="menu"><a href="research.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a><a href="research.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a></div>
+          <div class="nav-submenu nav-submenu-wide" id="research-menu" role="menu"><a href="research.html#analysis-pde" role="menuitem">Analysis &amp; partial differential equations</a><a href="research.html#dynamics-geometry" role="menuitem">Dynamical systems &amp; geometry</a><a href="research.html#stochastic-dynamics" role="menuitem">Stochastic dynamical systems</a></div>
         </div>
         <div class="nav-dropdown" data-dropdown>
           <a class="nav-link nav-dropdown-direct" href="activities.html" data-dropdown-link aria-expanded="false" aria-haspopup="true" aria-controls="activities-menu">Activities <span class="nav-chevron" aria-hidden="true">⌄</span></a>
@@ -77,10 +76,6 @@
             <select id="people-role-filter">
               <option value="all">All people</option>
               <option value="faculty">Faculty members</option>
-              <option value="junior">Junior researchers</option>
-              <option value="postdoc">Postdoctoral fellows</option>
-              <option value="phd">PhD students</option>
-              <option value="master">Master students</option>
             </select>
           </label>
           <label class="people-filter" for="people-area-filter">
@@ -89,6 +84,7 @@
               <option value="all">All directions</option>
               <option value="analysis-pde">Analysis &amp; PDE</option>
               <option value="dynamics-geometry">Dynamics &amp; Geometry</option>
+              <option value="stochastic-dynamics">Stochastic Dynamical Systems</option>
             </select>
           </label>
           <div class="people-view-control" role="group" aria-label="Directory view">
@@ -98,7 +94,7 @@
               <button class="view-button active" type="button" data-people-view="table" aria-pressed="true"><span aria-hidden="true">☷</span> Table</button>
             </div>
           </div>
-          <p id="people-results" class="people-results" role="status" aria-live="polite">Showing all 14 people</p>
+          <p id="people-results" class="people-results" role="status" aria-live="polite">Showing all 5 people</p>
         </aside>
 
         <div class="people-directory-content">
@@ -109,100 +105,50 @@
             </div>
 
             <div class="people-grid people-list faculty-list">
-              <article class="person-card reveal" data-person data-group="faculty" data-area="analysis-pde" data-role="professor">
-                <div class="portrait portrait-blue"><span>EM</span><small>PI</small></div>
-                <div class="person-info">
-                  <p class="person-role">Professor · Group director</p>
-                  <h5 class="person-name"><span class="person-name-en">Elena Marin</span></h5>
-                  <p class="person-research">Nonlinear PDEs, free-boundary problems and fluid interfaces.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Elena Marin personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
-                </div>
-              </article>
-              <article class="person-card reveal" data-delay="80" data-person data-group="faculty" data-area="analysis-pde" data-role="professor">
-                <div class="portrait portrait-gold"><span>MZ</span></div>
+              <article class="person-card reveal" data-person data-group="faculty" data-area="analysis-pde" data-role="professor" data-name-zh="廖娴">
+                <div class="portrait portrait-blue"><span>XL</span></div>
                 <div class="person-info">
                   <p class="person-role">Professor</p>
-                  <h5 class="person-name"><span class="person-name-en">Marcus Zhou</span></h5>
-                  <p class="person-research">H∞ functional calculus, evolution equations and harmonic analysis.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Marcus Zhou personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
+                  <h5 class="person-name"><span class="person-name-en">Xian Liao</span><span class="person-name-zh" lang="zh-Hans">廖娴</span></h5>
+                  <p class="person-research">Analysis and partial differential equations, fluid mechanics, dispersive equations and integrable systems.</p>
+                  <div class="person-links profile-links"><a href="https://faculty.dlut.edu.cn/liao/zh_CN/index.htm" target="_blank" rel="noreferrer">Homepage</a><a href="https://scholar.google.com/scholar?q=%22Xian+Liao%22+Navier-Stokes" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/profile/Xian-Liao" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="120" data-person data-group="faculty" data-area="analysis-pde" data-role="associate">
-                <div class="portrait portrait-cyan"><span>PN</span></div>
+              <article class="person-card reveal" data-delay="80" data-person data-group="faculty" data-area="analysis-pde" data-role="professor" data-name-zh="曹杨">
+                <div class="portrait portrait-gold"><span>YC</span></div>
+                <div class="person-info">
+                  <p class="person-role">Professor</p>
+                  <h5 class="person-name"><span class="person-name-en">Yang Cao</span><span class="person-name-zh" lang="zh-Hans">曹杨</span></h5>
+                  <p class="person-research">Partial differential equations and their applications in image processing and mathematical finance.</p>
+                  <div class="person-links profile-links"><a href="https://faculty.dlut.edu.cn/2010015013/zh_CN/index.htm" target="_blank" rel="noreferrer">Homepage</a><a href="https://scholar.google.com/scholar?q=%22Yang+Cao%22+%22Dalian+University+of+Technology%22+pseudo-parabolic" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/profile/Yang-Cao-173" target="_blank" rel="noreferrer">ResearchGate</a></div>
+                </div>
+              </article>
+              <article class="person-card reveal" data-delay="120" data-person data-group="faculty" data-area="dynamics-geometry" data-role="professor" data-name-zh="赵磊">
+                <div class="portrait portrait-cyan"><span>LZ</span></div>
+                <div class="person-info">
+                  <p class="person-role">Professor</p>
+                  <h5 class="person-name"><span class="person-name-en">Lei Zhao</span><span class="person-name-zh" lang="zh-Hans">赵磊</span></h5>
+                  <p class="person-research">Hamiltonian dynamical systems, celestial mechanics, symplectic geometry and mathematical physics.</p>
+                  <div class="person-links profile-links"><a href="https://faculty.dlut.edu.cn/zhao1899/zh_CN/index/1182940/list/index.htm" target="_blank" rel="noreferrer">Homepage</a><a href="https://scholar.google.com/scholar?q=%22Lei+Zhao%22+Hamiltonian+%22celestial+mechanics%22" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/profile/Lei-Zhao-50" target="_blank" rel="noreferrer">ResearchGate</a></div>
+                </div>
+              </article>
+              <article class="person-card reveal" data-delay="160" data-person data-group="faculty" data-area="stochastic-dynamics" data-role="associate" data-name-zh="程梦雨">
+                <div class="portrait portrait-ink"><span>MC</span></div>
                 <div class="person-info">
                   <p class="person-role">Associate professor</p>
-                  <h5 class="person-name"><span class="person-name-en">Priya Nair</span></h5>
-                  <p class="person-research">Integrable systems, free-boundary problems and nonlinear dispersive equations.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Priya Nair personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
+                  <h5 class="person-name"><span class="person-name-en">Mengyu Cheng</span><span class="person-name-zh" lang="zh-Hans">程梦雨</span></h5>
+                  <p class="person-research">Stochastic dynamical systems, averaging principles for multiscale stochastic systems and recurrent dynamics.</p>
+                  <div class="person-links profile-links"><a href="https://faculty.dlut.edu.cn/chengmengyu/zh_CN/index.htm" target="_blank" rel="noreferrer">Homepage</a><a href="https://scholar.google.com/scholar?q=%22Mengyu+Cheng%22+stochastic+averaging" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/profile/Mengyu-Cheng" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
               </article>
-              <article class="person-card reveal" data-delay="160" data-person data-group="faculty" data-area="dynamics-geometry" data-role="associate">
-                <div class="portrait portrait-ink"><span>DK</span></div>
+              <article class="person-card reveal" data-delay="200" data-person data-group="faculty" data-area="stochastic-dynamics" data-role="professor" data-name-zh="柳振鑫">
+                <div class="portrait portrait-coral"><span>ZL</span><small>Dean</small></div>
                 <div class="person-info">
-                  <p class="person-role">Associate professor</p>
-                  <h5 class="person-name"><span class="person-name-en">Daniel Kim</span></h5>
-                  <p class="person-research">Hamiltonian dynamical systems, celestial mechanics and symplectic geometry.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Daniel Kim personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
+                  <p class="person-role">Professor · Dean</p>
+                  <h5 class="person-name"><span class="person-name-en">Zhenxin Liu</span><span class="person-name-zh" lang="zh-Hans">柳振鑫</span></h5>
+                  <p class="person-research">Stochastic dynamical systems, stochastic differential equations, recurrence and stability.</p>
+                  <div class="person-links profile-links"><a href="https://faculty.dlut.edu.cn/liuzhenxin/zh_CN/index.htm" target="_blank" rel="noreferrer">Homepage</a><a href="https://scholar.google.com/scholar?q=%22Zhenxin+Liu%22+stochastic+%22Dalian+University+of+Technology%22" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/profile/Zhenxin-Liu-2" target="_blank" rel="noreferrer">ResearchGate</a></div>
                 </div>
-              </article>
-              <article class="person-card reveal" data-delay="200" data-person data-group="faculty" data-area="analysis-pde" data-role="assistant">
-                <div class="portrait portrait-coral"><span>SA</span></div>
-                <div class="person-info">
-                  <p class="person-role">Assistant professor</p>
-                  <h5 class="person-name"><span class="person-name-en">Sofia Alvarez</span></h5>
-                  <p class="person-research">Hamiltonian PDEs, dispersive waves and long-time dynamics.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Sofia Alvarez personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
-                </div>
-              </article>
-              <article class="person-card reveal" data-delay="240" data-person data-group="faculty" data-area="dynamics-geometry" data-role="assistant" data-name-zh="林伟">
-                <div class="portrait portrait-sky"><span>LW</span></div>
-                <div class="person-info">
-                  <p class="person-role">Assistant professor</p>
-                  <h5 class="person-name"><span class="person-name-en">Lin Wei</span><span class="person-name-zh" lang="zh-Hans">林伟</span></h5>
-                  <p class="person-research">Mathematical physics, invariant structures and nonlinear dynamics.</p>
-                  <div class="person-links profile-links"><a href="#" aria-label="Lin Wei personal homepage">Homepage</a><a href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a><a href="https://www.researchgate.net/" target="_blank" rel="noreferrer">ResearchGate</a></div>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <div class="people-group junior-group" id="junior" data-people-group="junior">
-            <div class="group-banner reveal">
-              <div><h3>Junior researchers</h3></div>
-            </div>
-
-            <div class="people-grid people-list junior-list">
-              <article class="person-card compact reveal" data-person data-group="junior" data-area="analysis-pde" data-role="postdoc">
-                <div class="portrait portrait-violet"><span>AH</span></div>
-                <div class="person-info"><p class="person-role">Postdoctoral fellow · 2025–27</p><h5 class="person-name"><span class="person-name-en">Amira Hassan</span></h5><p class="person-research">Boundary layers &amp; singular limits</p><div class="person-links"><a href="mailto:amira.hassan@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="50" data-person data-group="junior" data-area="analysis-pde" data-role="postdoc">
-                <div class="portrait portrait-mint"><span>LB</span></div>
-                <div class="person-info"><p class="person-role">Postdoctoral fellow · 2026–28</p><h5 class="person-name"><span class="person-name-en">Leo Berg</span></h5><p class="person-research">Free-boundary problems &amp; nonlinear PDEs</p><div class="person-links"><a href="mailto:leo.berg@university.edu">Email</a><a href="#">Profile ↗</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="100" data-person data-group="junior" data-area="analysis-pde" data-role="phd">
-                <div class="portrait portrait-cyan"><span>NC</span></div>
-                <div class="person-info"><p class="person-role">PhD candidate · Year 4</p><h5 class="person-name"><span class="person-name-en">Noor Chen</span></h5><p class="person-research">Water waves &amp; interfaces</p><div class="person-links"><a href="mailto:noor.chen@university.edu">Email</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="150" data-person data-group="junior" data-area="dynamics-geometry" data-role="phd">
-                <div class="portrait portrait-gold"><span>JR</span></div>
-                <div class="person-info"><p class="person-role">PhD student · Year 3</p><h5 class="person-name"><span class="person-name-en">Jonas Reed</span></h5><p class="person-research">Hamiltonian systems &amp; celestial mechanics</p><div class="person-links"><a href="mailto:jonas.reed@university.edu">Email</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="200" data-person data-group="junior" data-area="analysis-pde" data-role="phd">
-                <div class="portrait portrait-sky"><span>IT</span></div>
-                <div class="person-info"><p class="person-role">PhD student · Year 2</p><h5 class="person-name"><span class="person-name-en">Idris Tan</span></h5><p class="person-research">Kinetic equations &amp; transport</p><div class="person-links"><a href="mailto:idris.tan@university.edu">Email</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="250" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
-                <div class="portrait portrait-coral"><span>MS</span></div>
-                <div class="person-info"><p class="person-role">Master’s student · Year 2</p><h5 class="person-name"><span class="person-name-en">Mayumi Sato</span></h5><p class="person-research">Integrable systems &amp; dispersive equations</p><div class="person-links"><a href="mailto:mayumi.sato@university.edu">Email</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="300" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
-                <div class="portrait portrait-ink"><span>AO</span></div>
-                <div class="person-info"><p class="person-role">Master’s student · Year 2</p><h5 class="person-name"><span class="person-name-en">Alex Okafor</span></h5><p class="person-research">Symplectic geometry &amp; mathematical physics</p><div class="person-links"><a href="mailto:alex.okafor@university.edu">Email</a></div></div>
-              </article>
-              <article class="person-card compact reveal" data-delay="350" data-person data-group="junior" data-area="dynamics-geometry" data-role="master">
-                <div class="portrait portrait-violet"><span>YC</span></div>
-                <div class="person-info"><p class="person-role">Master’s student · Year 1</p><h5 class="person-name"><span class="person-name-en">Yuna Choi</span></h5><p class="person-research">Nonlinear dynamics &amp; stability</p><div class="person-links"><a href="mailto:yuna.choi@university.edu">Email</a></div></div>
               </article>
             </div>
           </div>

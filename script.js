@@ -99,9 +99,21 @@ let currentPeopleView = 'table';
 let peopleRows = [];
 
 const getText = (element, selector) => element.querySelector(selector)?.textContent.trim() || '';
-const getAreaLabel = (element) => element.dataset.area === 'analysis-pde'
-  ? 'analysis partial differential equations nonlinear pde fluid mechanics'
-  : 'dynamical systems geometry hamiltonian dynamics celestial mechanics symplectic geometry';
+const peopleAreaLabels = {
+  'analysis-pde': {
+    label: 'Analysis & PDE',
+    search: 'analysis partial differential equations nonlinear pde fluid mechanics',
+  },
+  'dynamics-geometry': {
+    label: 'Dynamics & Geometry',
+    search: 'dynamical systems geometry hamiltonian dynamics celestial mechanics symplectic geometry',
+  },
+  'stochastic-dynamics': {
+    label: 'Stochastic Dynamical Systems',
+    search: 'stochastic dynamical systems stochastic differential equations averaging recurrent dynamics',
+  },
+};
+const getAreaLabel = (element) => peopleAreaLabels[element.dataset.area]?.search || '';
 
 const arrangePeopleByCommunity = () => {
   peopleCards.forEach((card) => {
@@ -151,9 +163,7 @@ const buildPeopleTable = () => {
     const directionCell = document.createElement('td');
     const direction = document.createElement('span');
     direction.className = 'table-community';
-    direction.textContent = card.dataset.area === 'analysis-pde'
-      ? 'Analysis & PDE'
-      : 'Dynamics & Geometry';
+    direction.textContent = peopleAreaLabels[card.dataset.area]?.label || 'Other';
     directionCell.append(direction);
 
     const linksCell = document.createElement('td');
