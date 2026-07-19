@@ -115,7 +115,7 @@ const peopleAreaLabels = {
 };
 const peopleCommunityLabels = {
   faculty: 'Faculty Member',
-  phd: 'PhD Student',
+  junior: 'Junior Researcher',
 };
 const getAreaLabel = (element) => peopleAreaLabels[element.dataset.area]?.search || '';
 
@@ -254,7 +254,7 @@ if (peopleCards.length) {
   arrangePeopleByCommunity();
   buildPeopleTable();
   const initialGroup = window.location.hash.slice(1);
-  if (peopleRoleFilter && ['faculty', 'phd'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
+  if (peopleRoleFilter && ['faculty', 'junior'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
   setPeopleView('table');
   peopleSearch?.addEventListener('input', updatePeopleDirectory);
   peopleRoleFilter?.addEventListener('change', updatePeopleDirectory);
@@ -268,7 +268,7 @@ if (peopleCards.length) {
     peopleSearch?.focus();
   });
 
-  document.querySelectorAll('a[href$="#faculty"], a[href$="#phd"]').forEach((link) => {
+  document.querySelectorAll('a[href$="#faculty"], a[href$="#junior"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const group = link.hash.slice(1);
       if (peopleRoleFilter) peopleRoleFilter.value = group;
