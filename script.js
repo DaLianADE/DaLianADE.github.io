@@ -113,6 +113,10 @@ const peopleAreaLabels = {
     search: 'stochastic dynamical systems stochastic differential equations averaging recurrent dynamics',
   },
 };
+const peopleCommunityLabels = {
+  faculty: 'Faculty Member',
+  phd: 'PhD Student',
+};
 const getAreaLabel = (element) => peopleAreaLabels[element.dataset.area]?.search || '';
 
 const arrangePeopleByCommunity = () => {
@@ -149,12 +153,21 @@ const buildPeopleTable = () => {
     nameCell.append(name);
 
     const roleCell = document.createElement('td');
-    roleCell.textContent = getText(card, '.person-role');
+    const role = document.createElement('span');
+    role.className = 'table-role';
+    role.textContent = getText(card, '.person-role');
+    const periodText = getText(card, '.person-period');
+    if (periodText) {
+      const period = document.createElement('small');
+      period.textContent = periodText;
+      role.append(period);
+    }
+    roleCell.append(role);
 
     const communityCell = document.createElement('td');
     const community = document.createElement('span');
     community.className = 'table-community';
-    community.textContent = card.dataset.group === 'faculty' ? 'Faculty Member' : 'Junior Researcher';
+    community.textContent = peopleCommunityLabels[card.dataset.group] || 'Member';
     communityCell.append(community);
 
     const researchCell = document.createElement('td');
@@ -241,7 +254,7 @@ if (peopleCards.length) {
   arrangePeopleByCommunity();
   buildPeopleTable();
   const initialGroup = window.location.hash.slice(1);
-  if (peopleRoleFilter && ['faculty', 'junior'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
+  if (peopleRoleFilter && ['faculty', 'phd'].includes(initialGroup)) peopleRoleFilter.value = initialGroup;
   setPeopleView('table');
   peopleSearch?.addEventListener('input', updatePeopleDirectory);
   peopleRoleFilter?.addEventListener('change', updatePeopleDirectory);
@@ -255,7 +268,7 @@ if (peopleCards.length) {
     peopleSearch?.focus();
   });
 
-  document.querySelectorAll('a[href$="#faculty"], a[href$="#junior"]').forEach((link) => {
+  document.querySelectorAll('a[href$="#faculty"], a[href$="#phd"]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const group = link.hash.slice(1);
       if (peopleRoleFilter) peopleRoleFilter.value = group;
