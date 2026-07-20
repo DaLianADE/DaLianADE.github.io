@@ -1077,9 +1077,21 @@ button { color: inherit; }
 .publication-list a:hover { color: var(--blue); }
 .publication-list small { color: var(--muted); font-size: .59rem; }
 .publication-toggle-row { display: flex; justify-content: flex-end; margin-top: 22px; }
-.publication-toggle { min-width: 112px; padding: 10px 16px; border: 1px solid var(--blue); border-radius: 999px; color: var(--blue); background: transparent; font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .2s ease, background .2s ease, transform .2s ease; }
+.publication-toggle { min-width: 112px; display: inline-flex; align-items: center; justify-content: center; gap: .68em; overflow: hidden; padding: 10px 16px; border: 1px solid var(--blue); border-radius: 999px; color: var(--blue); background: transparent; font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease; }
 .publication-toggle:hover { color: var(--white); background: var(--blue); transform: translateY(-1px); }
 .publication-toggle:focus-visible { outline: 3px solid rgba(0,86,179,.24); outline-offset: 3px; }
+.publication-toggle.is-animating { pointer-events: none; box-shadow: 0 0 0 5px rgba(0,86,179,.08); }
+.publication-toggle-label { display: inline-block; }
+.publication-toggle-symbol { display: inline-block; min-width: 1em; font-size: .8rem; line-height: 1; transition: transform .34s cubic-bezier(.22, 1, .36, 1); }
+.publication-toggle.is-expanded .publication-toggle-symbol { transform: rotate(180deg); }
+.publication-toggle.is-changing .publication-toggle-label { animation: publication-toggle-label-in .28s cubic-bezier(.22, 1, .36, 1); }
+@keyframes publication-toggle-label-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .publication-toggle,
+  .publication-toggle-symbol { transition: none; }
+  .publication-toggle.is-changing .publication-toggle-label { animation: none; }
+}
 
 .events-section { background: var(--white); }
 .past-events-section { padding-top: 0; background: var(--paper); }

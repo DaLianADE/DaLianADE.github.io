@@ -311,17 +311,77 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
   const button = document.createElement('button');
   button.className = 'publication-toggle';
   button.type = 'button';
-  button.textContent = 'More +';
+  button.innerHTML = '<span class="publication-toggle-label">More</span><span class="publication-toggle-symbol" aria-hidden="true">+</span>';
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', list.id);
+  button.setAttribute('aria-label', 'Show more publications');
   controls.append(button);
   list.after(controls);
 
-  button.addEventListener('click', () => {
-    const expanded = button.getAttribute('aria-expanded') === 'true';
-    archivedItems.forEach((item) => { item.hidden = expanded; });
-    button.setAttribute('aria-expanded', String(!expanded));
-    button.textContent = expanded ? 'More +' : 'Less −';
+  const label = button.querySelector('.publication-toggle-label');
+  const symbol = button.querySelector('.publication-toggle-symbol');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const setButtonState = (expanded) => {
+    button.setAttribute('aria-expanded', String(expanded));
+    button.setAttribute('aria-label', expanded ? 'Show fewer publications' : 'Show more publications');
+    button.classList.toggle('is-expanded', expanded);
+    button.classList.remove('is-changing');
+    void button.offsetWidth;
+    button.classList.add('is-changing');
+    label.textContent = expanded ? 'Less' : 'More';
+    symbol.textContent = expanded ? '−' : '+';
+  };
+
+  button.addEventListener('click', async () => {
+    if (button.classList.contains('is-animating')) return;
+
+    const willExpand = button.getAttribute('aria-expanded') !== 'true';
+    setButtonState(willExpand);
+
+    if (reducedMotion || typeof archivedItems[0]?.animate !== 'function') {
+      archivedItems.forEach((item) => { item.hidden = !willExpand; });
+      return;
+    }
+
+    button.classList.add('is-animating');
+    button.setAttribute('aria-disabled', 'true');
+
+    if (willExpand) archivedItems.forEach((item) => { item.hidden = false; });
+
+    const animations = archivedItems.map((item, itemIndex) => {
+      const itemStyle = getComputedStyle(item);
+      const height = item.offsetHeight;
+      const openFrame = {
+        height: `${height}px`,
+        paddingTop: itemStyle.paddingTop,
+        paddingBottom: itemStyle.paddingBottom,
+        borderTopColor: itemStyle.borderTopColor,
+        opacity: 1,
+        transform: 'translateY(0)',
+      };
+      const closedFrame = {
+        height: '0px',
+        paddingTop: '0px',
+        paddingBottom: '0px',
+        borderTopColor: 'transparent',
+        opacity: 0,
+        transform: 'translateY(-10px)',
+      };
+      const staggerIndex = willExpand ? itemIndex : archivedItems.length - itemIndex - 1;
+      return item.animate(willExpand ? [closedFrame, openFrame] : [openFrame, closedFrame], {
+        duration: willExpand ? 360 : 260,
+        delay: Math.min(staggerIndex * 24, 240),
+        easing: 'cubic-bezier(.22, 1, .36, 1)',
+        fill: 'both',
+      });
+    });
+
+    await Promise.all(animations.map((animation) => animation.finished.catch(() => undefined)));
+    if (!willExpand) archivedItems.forEach((item) => { item.hidden = true; });
+    animations.forEach((animation) => animation.cancel());
+    button.classList.remove('is-animating');
+    button.removeAttribute('aria-disabled');
   });
 });
 
