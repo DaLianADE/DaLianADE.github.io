@@ -104,6 +104,10 @@ const peopleAreaLabels = {
     label: 'Analysis & PDE',
     search: 'analysis partial differential equations nonlinear pde fluid mechanics',
   },
+  'nonlinear-diffusion-image-processing': {
+    label: 'Nonlinear Diffusion & Image Processing',
+    search: 'nonlinear diffusion pseudo-parabolic non-local reaction-diffusion equations pde image processing',
+  },
   'dynamics-geometry': {
     label: 'Dynamics & Geometry',
     search: 'dynamical systems geometry hamiltonian dynamics celestial mechanics symplectic geometry',
@@ -118,8 +122,16 @@ const peopleCommunityLabels = {
   junior: 'Junior Researcher',
 };
 const getAreaLabel = (element) => peopleAreaLabels[element.dataset.area]?.search || '';
+const getSurname = (element) => {
+  const name = getText(element, '.person-name-en');
+  return name.split(/\s+/).filter(Boolean).at(-1) || name;
+};
 
 const arrangePeopleByCommunity = () => {
+  peopleCards.sort((left, right) => {
+    const surnameOrder = getSurname(left).localeCompare(getSurname(right), 'en', { sensitivity: 'base' });
+    return surnameOrder || getText(left, '.person-name-en').localeCompare(getText(right, '.person-name-en'), 'en', { sensitivity: 'base' });
+  });
   peopleCards.forEach((card) => {
     const targetList = document.querySelector(`#${card.dataset.group} .people-list`);
     targetList?.append(card);
@@ -283,6 +295,35 @@ if (peopleCards.length) {
     });
   });
 }
+
+document.querySelectorAll('.research-publications-panel .publication-list').forEach((list, index) => {
+  const archivedItems = [...list.children].filter((item) => {
+    const year = Number.parseInt(item.querySelector(':scope > span')?.textContent || '', 10);
+    return Number.isFinite(year) && year < 2025;
+  });
+  if (!archivedItems.length) return;
+
+  list.id ||= `publication-list-${index + 1}`;
+  archivedItems.forEach((item) => { item.hidden = true; });
+
+  const controls = document.createElement('div');
+  controls.className = 'publication-toggle-row';
+  const button = document.createElement('button');
+  button.className = 'publication-toggle';
+  button.type = 'button';
+  button.textContent = 'More +';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-controls', list.id);
+  controls.append(button);
+  list.after(controls);
+
+  button.addEventListener('click', () => {
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    archivedItems.forEach((item) => { item.hidden = expanded; });
+    button.setAttribute('aria-expanded', String(!expanded));
+    button.textContent = expanded ? 'More +' : 'Less −';
+  });
+});
 
 const observedSections = document.body.classList.contains('home-page')
   ? [...document.querySelectorAll('#home')]
