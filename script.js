@@ -296,9 +296,61 @@ if (peopleCards.length) {
   });
 }
 
+const researchDirectionOrder = [
+  'analysis-pde',
+  'dynamics-geometry',
+  'nonlinear-diffusion-image-processing',
+  'stochastic-dynamics',
+];
+
+const getResearchDirectionId = (link) => {
+  const hashIndex = link.getAttribute('href')?.indexOf('#') ?? -1;
+  return hashIndex >= 0 ? link.getAttribute('href').slice(hashIndex + 1) : '';
+};
+
+document.querySelectorAll('#research-menu, .research-directions .page-side-nav').forEach((navigation) => {
+  const links = new Map(
+    [...navigation.querySelectorAll('a')]
+      .map((link) => [getResearchDirectionId(link), link])
+      .filter(([id]) => researchDirectionOrder.includes(id)),
+  );
+  researchDirectionOrder.forEach((id) => {
+    if (links.has(id)) navigation.append(links.get(id));
+  });
+});
+
+const researchDirectionStack = document.querySelector('.research-direction-stack');
+if (researchDirectionStack) {
+  researchDirectionOrder.forEach((id) => {
+    const section = document.getElementById(id);
+    if (section) researchDirectionStack.append(section);
+  });
+}
+
+const getPublicationYear = (item) => Number.parseInt(
+  item.querySelector(':scope > span')?.textContent || '',
+  10,
+);
+const getFirstPublicationAuthor = (item) => (
+  item.querySelector('strong')?.textContent
+    .trim()
+    .split(/\s*(?:&|,)\s*/u)[0] || ''
+);
+
 document.querySelectorAll('.research-publications-panel .publication-list').forEach((list, index) => {
+  const sortedItems = [...list.children].sort((left, right) => {
+    const yearOrder = getPublicationYear(right) - getPublicationYear(left);
+    if (yearOrder) return yearOrder;
+    return getFirstPublicationAuthor(left).localeCompare(
+      getFirstPublicationAuthor(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+  });
+  list.append(...sortedItems);
+
   const archivedItems = [...list.children].filter((item) => {
-    const year = Number.parseInt(item.querySelector(':scope > span')?.textContent || '', 10);
+    const year = getPublicationYear(item);
     return Number.isFinite(year) && year < 2025;
   });
   if (!archivedItems.length) return;

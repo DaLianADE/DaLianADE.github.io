@@ -1287,7 +1287,7 @@ button { color: inherit; }
 .teaching-list-head,
 .teaching-list-row {
   display: grid;
-  grid-template-columns: minmax(120px, .72fr) minmax(280px, 1.85fr) minmax(210px, 1.08fr) minmax(170px, .9fr);
+  grid-template-columns: minmax(108px, .58fr) minmax(300px, 2.12fr) minmax(220px, 1.18fr) minmax(160px, .82fr);
 }
 .teaching-list-head {
   background: #f3f7fb;
@@ -1305,14 +1305,20 @@ button { color: inherit; }
 .teaching-list-cell + .teaching-list-cell { border-left: 1px solid var(--line); }
 .teaching-list-row + .teaching-list-row { border-top: 1px solid var(--line); }
 .teaching-list-row-featured { background: linear-gradient(90deg, rgba(0,94,184,.035), transparent 58%); }
-.teaching-list-cell { min-width: 0; padding: 20px 18px; }
+.teaching-list-cell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px;
+}
 .teaching-mobile-label { display: none; }
 .teaching-semester strong,
 .teaching-instructors strong {
   display: block;
   color: var(--navy);
   font-family: var(--serif);
-  font-size: .98rem;
+  font-size: .9rem;
   font-weight: 500;
   line-height: 1.32;
 }
@@ -1329,12 +1335,14 @@ button { color: inherit; }
   margin: 0;
   color: var(--navy);
   font-family: var(--serif);
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-size: clamp(.94rem, 1.08vw, 1.08rem);
   font-weight: 500;
   line-height: 1.28;
+  text-wrap: balance;
 }
-.teaching-list-row-featured .teaching-course h3 { font-size: clamp(1.03rem, 1.32vw, 1.28rem); }
+.teaching-list-row-featured .teaching-course h3 { font-size: clamp(.96rem, 1.14vw, 1.12rem); }
 .teaching-instructor-list { display: grid; gap: 11px; }
+.teaching-instructor-list strong { white-space: nowrap; }
 .teaching-links { color: var(--muted); font-size: .7rem; line-height: 1.55; }
 .teaching-links > a {
   display: inline-flex;
@@ -1374,9 +1382,10 @@ button { color: inherit; }
   .research-page-layout { grid-template-columns: 185px minmax(0, 1fr); gap: 38px; }
   .activities-page-layout { grid-template-columns: 160px minmax(0, 1fr); gap: 38px; }
   .teaching-list-head,
-  .teaching-list-row { grid-template-columns: 112px minmax(220px, 1.6fr) minmax(170px, 1fr) minmax(145px, .82fr); }
+  .teaching-list-row { grid-template-columns: 104px minmax(230px, 1.72fr) minmax(185px, 1.06fr) minmax(140px, .78fr); }
   .teaching-list-cell,
   .teaching-list-head span { padding-inline: 15px; }
+  .teaching-instructor-list strong { white-space: normal; }
 }
 
 @media (max-width: 900px) {
