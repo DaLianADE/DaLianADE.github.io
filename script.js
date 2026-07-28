@@ -296,6 +296,28 @@ if (peopleCards.length) {
   });
 }
 
+const teachingTermOrder = {
+  spring: 1,
+  summer: 2,
+  fall: 3,
+  autumn: 3,
+  winter: 4,
+};
+
+const getTeachingChronology = (row) => {
+  const semester = row.querySelector('.teaching-semester strong')?.textContent.trim() || '';
+  const year = Number.parseInt(semester.match(/\b\d{4}\b/)?.[0] || '', 10);
+  const term = semester.match(/^[A-Za-z]+/)?.[0].toLocaleLowerCase() || '';
+  return (Number.isFinite(year) ? year : 0) * 10 + (teachingTermOrder[term] || 0);
+};
+
+const teachingList = document.querySelector('.teaching-list');
+if (teachingList) {
+  const teachingRows = [...teachingList.querySelectorAll(':scope > .teaching-list-row')];
+  teachingRows.sort((left, right) => getTeachingChronology(right) - getTeachingChronology(left));
+  teachingList.append(...teachingRows);
+}
+
 const researchDirectionOrder = [
   'analysis-pde',
   'dynamics-geometry',
@@ -336,11 +358,20 @@ const getFirstPublicationAuthor = (item) => (
     .trim()
     .split(/\s*(?:&|,)\s*/u)[0] || ''
 );
+const getFirstPublicationAuthorSurname = (item) => (
+  getFirstPublicationAuthor(item).split(/\s+/u).filter(Boolean).at(-1) || ''
+);
 
 document.querySelectorAll('.research-publications-panel .publication-list').forEach((list, index) => {
   const sortedItems = [...list.children].sort((left, right) => {
     const yearOrder = getPublicationYear(right) - getPublicationYear(left);
     if (yearOrder) return yearOrder;
+    const surnameOrder = getFirstPublicationAuthorSurname(left).localeCompare(
+      getFirstPublicationAuthorSurname(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+    if (surnameOrder) return surnameOrder;
     return getFirstPublicationAuthor(left).localeCompare(
       getFirstPublicationAuthor(right),
       'en',
