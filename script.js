@@ -311,10 +311,38 @@ const getTeachingChronology = (row) => {
   return (Number.isFinite(year) ? year : 0) * 10 + (teachingTermOrder[term] || 0);
 };
 
+const getFirstTeachingInstructorSurname = (row) => {
+  const instructor = row.querySelector('.teaching-instructors strong')?.textContent
+    .trim()
+    .replace(/^(?:Prof|Dr)\.?\s+/iu, '') || '';
+  const [, ...surnameParts] = instructor.split(/\s+/u);
+  return surnameParts.join(' ') || instructor;
+};
+
+const getTeachingCourseTitle = (row) => (
+  row.querySelector('.teaching-course h3')?.textContent.trim() || ''
+);
+
 const teachingList = document.querySelector('.teaching-list');
 if (teachingList) {
   const teachingRows = [...teachingList.querySelectorAll(':scope > .teaching-list-row')];
-  teachingRows.sort((left, right) => getTeachingChronology(right) - getTeachingChronology(left));
+  teachingRows.sort((left, right) => {
+    const chronologyOrder = getTeachingChronology(right) - getTeachingChronology(left);
+    if (chronologyOrder) return chronologyOrder;
+
+    const instructorOrder = getFirstTeachingInstructorSurname(left).localeCompare(
+      getFirstTeachingInstructorSurname(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+    if (instructorOrder) return instructorOrder;
+
+    return getTeachingCourseTitle(left).localeCompare(
+      getTeachingCourseTitle(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+  });
   teachingList.append(...teachingRows);
 }
 
