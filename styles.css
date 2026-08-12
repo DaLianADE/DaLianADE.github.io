@@ -1363,6 +1363,13 @@ button { color: inherit; }
 .useful-pdf-list li::before { content: ""; position: absolute; width: 7px; height: 7px; margin-left: -23px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 5px rgba(255,204,0,.13); }
 .useful-pdf-list h3 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(1.25rem, 2.2vw, 1.85rem); font-weight: 400; line-height: 1.2; }
 
+.practical-information-list { margin: 30px 0 0; padding-left: 24px; }
+.practical-information-list li { padding-left: 4px; color: var(--text); font-size: .76rem; line-height: 1.75; }
+.practical-information-list li + li { margin-top: 28px; }
+.practical-information-list p { margin: 4px 0 0; }
+.practical-information-list a { color: var(--blue); font-size: .86rem; }
+.practical-information-list a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
+
 .application-brief { display: grid; gap: 25px; }
 .application-brief h2 { margin: 0; color: var(--navy); font-family: var(--serif); font-size: clamp(2rem, 3.2vw, 2.9rem); font-weight: 400; letter-spacing: -.035em; line-height: 1.04; }
 .application-brief > div > p { max-width: 850px; margin: 20px 0 0; color: var(--text); font-size: .78rem; line-height: 1.78; }
