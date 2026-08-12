@@ -27,7 +27,8 @@ Add one compact card to the Junior Researchers list in `people.html`:
 - Period: `Sep. 2026 –`
 - Community: `Junior Researcher`
 - Research direction: `Analysis & PDE`
-- Research interest: `Analysis and partial differential equations.`
+- Research interest: `Nonlinear dispersive equations.`
+- Homepage: `https://sites.google.com/view/xiaoan-shen`, displayed as `Homepage` in the Links field.
 - Portrait initials: `XS`
 
 Use `data-group="junior"`, `data-area="analysis-pde"`, and `data-role="postdoc"` so the existing filters and table view work without CSS changes.
@@ -54,7 +55,7 @@ The fourth title and metadata follow the publisher/Crossref capitalization and t
 
 - Confirm the rendered course order is year descending, Fall before Spring, instructor surname ascending, then course title ascending.
 - Confirm the 12 existing courses retain all original content.
-- Confirm exactly one Xiaoan Shen / 沈笑安 card exists and appears in both card and table views with the requested role, period, direction, and research interest.
+- Confirm exactly one Xiaoan Shen / 沈笑安 card exists and appears in both card and table views with the requested role, period, direction, research interest, and Homepage link.
 - Confirm each new DOI and normalized title appears exactly once in the requested Research list.
 - Confirm only the two new 2026 publications receive `publication-year-2026`; the two 2024 publications remain normal and are covered by the existing More/Less behavior.
 - Parse the modified HTML, run JavaScript syntax checking and `git diff --check`, and confirm no CSS or unrelated content changed.
