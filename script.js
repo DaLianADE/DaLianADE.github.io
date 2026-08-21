@@ -352,8 +352,8 @@ if (teachingList) {
 
 const researchDirectionOrder = [
   'analysis-pde',
-  'harmonic-analysis',
   'dynamics-geometry',
+  'harmonic-analysis',
   'nonlinear-diffusion-image-processing',
   'stochastic-dynamics',
 ];
