@@ -391,6 +391,7 @@ const getFirstPublicationAuthor = (item) => (
     .trim()
     .split(/\s*(?:&|,)\s*/u)[0] || ''
 );
+const getPublicationAuthorLine = (item) => item.querySelector('strong')?.textContent.trim() || '';
 const getFirstPublicationAuthorSurname = (item) => (
   getFirstPublicationAuthor(item).split(/\s+/u).filter(Boolean).at(-1) || ''
 );
@@ -405,8 +406,20 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
       { sensitivity: 'base' },
     );
     if (surnameOrder) return surnameOrder;
-    return getFirstPublicationAuthor(left).localeCompare(
+    const firstAuthorOrder = getFirstPublicationAuthor(left).localeCompare(
       getFirstPublicationAuthor(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+    if (firstAuthorOrder) return firstAuthorOrder;
+    const authorLineOrder = getPublicationAuthorLine(left).localeCompare(
+      getPublicationAuthorLine(right),
+      'en',
+      { sensitivity: 'base' },
+    );
+    if (authorLineOrder) return authorLineOrder;
+    return (left.querySelector('a')?.textContent || '').localeCompare(
+      right.querySelector('a')?.textContent || '',
       'en',
       { sensitivity: 'base' },
     );
