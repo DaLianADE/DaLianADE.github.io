@@ -424,7 +424,7 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
       { sensitivity: 'base' },
     );
   });
-  list.append(...sortedItems);
+  if (!list.closest('#harmonic-analysis')) list.append(...sortedItems);
 
   const archivedItems = [...list.children].filter((item) => {
     const year = getPublicationYear(item);
