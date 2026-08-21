@@ -104,6 +104,10 @@ const peopleAreaLabels = {
     label: 'Analysis & PDE',
     search: 'analysis partial differential equations nonlinear pde fluid mechanics',
   },
+  'harmonic-analysis': {
+    label: 'Harmonic Analysis',
+    search: 'harmonic analysis',
+  },
   'nonlinear-diffusion-image-processing': {
     label: 'Nonlinear Diffusion & Image Processing',
     search: 'nonlinear diffusion pseudo-parabolic non-local reaction-diffusion equations pde image processing',
@@ -348,6 +352,7 @@ if (teachingList) {
 
 const researchDirectionOrder = [
   'analysis-pde',
+  'harmonic-analysis',
   'dynamics-geometry',
   'nonlinear-diffusion-image-processing',
   'stochastic-dynamics',
