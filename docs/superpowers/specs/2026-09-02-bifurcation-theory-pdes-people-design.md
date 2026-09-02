@@ -46,6 +46,8 @@ Update the initial People result count from 66 to 78.
 
 Use the current publication-list markup: year, authors, DOI-linked title, and journal details. Preserve the supplied ordering from newest to oldest.
 
+Show all seven publications in `Bifurcation Theory & PDEs` by default and do not add a `More` control to this direction. Keep the existing pre-2025 folding behavior unchanged for all other research directions.
+
 1. Qidong Wu & Fengqi Yi, “Turing instability of synchronized layered steady states and breathing periodic solutions in membrane-coupled reaction-diffusion systems,” *Mathematische Annalen* 395(3), 58 (2026). DOI: `10.1007/s00208-026-03483-9`.
 2. Qiannan Song & Fengqi Yi, “Turing instability of the periodic solutions for the reaction-diffusion system involving nonlocal delays,” *SIAM Journal on Applied Dynamical Systems* 24(4), 2767–2803 (2025). DOI: `10.1137/24M1687893`.
 3. Gaoyang She & Fengqi Yi, “Stability and bifurcation analysis of a reaction-diffusion SIRS epidemic model with the general saturated incidence rate,” *Journal of Nonlinear Science* 34, 101 (2024). DOI: `10.1007/s00332-024-10081-z`.
@@ -74,5 +76,6 @@ Do not mark the other two courses as graduate courses and do not add course link
 - Confirm the generated People table includes the faculty links and all new entries.
 - Confirm the default People count is 78 and role filters classify six master’s and five PhD students correctly.
 - Confirm all seven DOI links and normalized paper titles appear exactly once in the new publication list.
+- Confirm all seven papers in `Bifurcation Theory & PDEs` are visible by default and this direction has no publication toggle.
 - Confirm the three Fall 2026 course rows use Fengqi Yi as instructor and only Applied Partial Differential Equations is labelled `Graduate course`.
 - Run the available static checks and inspect the rendered pages at desktop and mobile widths.
