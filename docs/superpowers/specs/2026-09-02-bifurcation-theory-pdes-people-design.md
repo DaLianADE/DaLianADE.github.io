@@ -9,7 +9,7 @@ Add `Bifurcation Theory & PDEs` as a complete research direction, add Fengqi Yi 
 - Use the identifier `bifurcation-theory-pdes` consistently.
 - Add `Bifurcation Theory & PDEs` to every site-wide Research dropdown, the Research page side navigation, the People direction filter, and the JavaScript direction label/order map.
 - Add a Research page cluster with the existing theme-panel and publication-panel structure.
-- Show these themes: `Reaction-Diffusion Equations`, `Bifurcation Theory with Applications`, `Singular Perturbation`, and `Mathematical Biology`.
+- Show these themes: `Reaction-Diffusion Systems of elliptic or parabolic type`, `Bifurcation theory`, `dynamical systems`, and `singular perturbation`.
 - Keep the existing visual design and responsive behavior.
 
 ## Faculty
@@ -19,7 +19,7 @@ Add a faculty card for:
 - Name: `Fengqi Yi` / `衣凤岐`
 - Role: `Professor`
 - Direction: `Bifurcation Theory & PDEs`
-- Research interests: `Reaction-Diffusion Systems of elliptic or parabolic type, Bifurcation theory, dynamical systems, singular perturbation.`
+- Research interests: `Reaction-diffusion equations, Bifurcation theory with applications; Singular perturbation; Mathematical biology.`
 - Links: official Dalian University of Technology homepage, Google Scholar search, and ResearchGate author search, matching the three-link pattern used by other faculty cards.
 
 ## Junior Researchers

@@ -106,7 +106,7 @@ const peopleAreaLabels = {
   },
   'bifurcation-theory-pdes': {
     label: 'Bifurcation Theory & PDEs',
-    search: 'reaction-diffusion systems elliptic parabolic bifurcation theory dynamical systems singular perturbation',
+    search: 'reaction-diffusion systems equations elliptic parabolic bifurcation theory applications dynamical systems singular perturbation mathematical biology',
   },
   'harmonic-analysis': {
     label: 'Harmonic Analysis',
