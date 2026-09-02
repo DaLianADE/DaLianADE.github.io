@@ -2,7 +2,7 @@
 
 ## Goal
 
-Add `Bifurcation Theory & PDEs` as a complete research direction, add Fengqi Yi and eleven students to People, and publish the seven supplied Fengqi Yi papers using the site's existing publication format.
+Add `Bifurcation Theory & PDEs` as a complete research direction, add Fengqi Yi and eleven students to People, publish the seven supplied Fengqi Yi papers, and add three Fall 2026 courses using the site's existing formats.
 
 ## Research Direction
 
@@ -54,6 +54,18 @@ Use the current publication-list markup: year, authors, DOI-linked title, and jo
 6. Mi Wang & Fengqi Yi, “On the dynamics of the diffusive Field-Noyes model for the Belousov-Zhabotinskii reaction,” *Journal of Differential Equations* 318, 443–479 (2022). DOI: `10.1016/j.jde.2022.02.031`.
 7. Fengqi Yi, “Turing instability of the periodic solutions for reaction-diffusion systems with cross-diffusion and the patch model with cross-diffusion-like coupling,” *Journal of Differential Equations* 281, 379–410 (2021). DOI: `10.1016/j.jde.2021.02.006`.
 
+## Courses
+
+Add three rows to the existing `Fall 2026` teaching list. Use `Prof. Fengqi Yi` / `衣凤岐` as the instructor and preserve the current bilingual row markup.
+
+| English title | Chinese title | Links and notes |
+| --- | --- | --- |
+| Ordinary Differential Equations | 常微分方程 | — |
+| Applied Partial Differential Equations | 应用偏微分方程 | Graduate course |
+| Advanced Algebra | 高等代数 | — |
+
+Do not mark the other two courses as graduate courses and do not add course links that were not supplied.
+
 ## Verification
 
 - Confirm all five HTML pages contain the new Research dropdown link and target the same Research page anchor.
@@ -62,4 +74,5 @@ Use the current publication-list markup: year, authors, DOI-linked title, and jo
 - Confirm the generated People table includes the faculty links and all new entries.
 - Confirm the default People count is 78 and role filters classify six master’s and five PhD students correctly.
 - Confirm all seven DOI links and normalized paper titles appear exactly once in the new publication list.
+- Confirm the three Fall 2026 course rows use Fengqi Yi as instructor and only Applied Partial Differential Equations is labelled `Graduate course`.
 - Run the available static checks and inspect the rendered pages at desktop and mobile widths.
