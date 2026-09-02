@@ -437,6 +437,7 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
     );
   });
   if (!list.closest('#harmonic-analysis')) list.append(...sortedItems);
+  if (list.closest('#bifurcation-theory-pdes')) return;
 
   const archivedItems = [...list.children].filter((item) => {
     const year = getPublicationYear(item);
