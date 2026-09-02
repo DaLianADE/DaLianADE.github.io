@@ -19,7 +19,7 @@ Add a faculty card for:
 - Name: `Fengqi Yi` / `衣凤岐`
 - Role: `Professor`
 - Direction: `Bifurcation Theory & PDEs`
-- Research interests: `Reaction-diffusion equations, bifurcation theory with applications, singular perturbation and mathematical biology.`
+- Research interests: `Reaction-Diffusion Systems of elliptic or parabolic type, Bifurcation theory, dynamical systems, singular perturbation.`
 - Links: official Dalian University of Technology homepage, Google Scholar search, and ResearchGate author search, matching the three-link pattern used by other faculty cards.
 
 ## Junior Researchers
