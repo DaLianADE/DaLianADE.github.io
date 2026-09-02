@@ -104,6 +104,10 @@ const peopleAreaLabels = {
     label: 'Analysis & PDE',
     search: 'analysis partial differential equations nonlinear pde fluid mechanics',
   },
+  'bifurcation-theory-pdes': {
+    label: 'Bifurcation Theory & PDEs',
+    search: 'reaction-diffusion equations bifurcation theory singular perturbation mathematical biology',
+  },
   'harmonic-analysis': {
     label: 'Harmonic Analysis',
     search: 'harmonic analysis',
@@ -352,6 +356,7 @@ if (teachingList) {
 
 const researchDirectionOrder = [
   'analysis-pde',
+  'bifurcation-theory-pdes',
   'dynamics-geometry',
   'harmonic-analysis',
   'nonlinear-diffusion-image-processing',
@@ -380,6 +385,13 @@ if (researchDirectionStack) {
     const section = document.getElementById(id);
     if (section) researchDirectionStack.append(section);
   });
+  const activeDirectionId = decodeURIComponent(window.location.hash.slice(1));
+  const activeDirection = document.getElementById(activeDirectionId);
+  if (activeDirection && researchDirectionOrder.includes(activeDirectionId)) {
+    window.addEventListener('load', () => {
+      setTimeout(() => activeDirection.scrollIntoView(), 0);
+    }, { once: true });
+  }
 }
 
 const getPublicationYear = (item) => Number.parseInt(
