@@ -10,7 +10,7 @@ Add `Bifurcation Theory & PDEs` as a complete research direction, add Fengqi Yi 
 - Display `Bifurcation Theory & Partial Differential Equations` in every site-wide Research dropdown and in the Research page cluster's direction label.
 - Keep `Bifurcation Theory & PDEs` unchanged in the Research page side navigation, the People direction filter, the JavaScript direction label/order map, and all other locations.
 - Add a Research page cluster with the existing theme-panel and publication-panel structure.
-- Show these themes: `Reaction-Diffusion Systems of elliptic or parabolic type`, `Bifurcation theory`, `dynamical systems`, and `singular perturbation`.
+- Show these themes in title case: `Reaction-Diffusion Systems of Elliptic or Parabolic Type`, `Bifurcation Theory`, `Dynamical Systems`, and `Singular Perturbation`.
 - Keep the existing visual design and responsive behavior.
 
 ## Faculty
