@@ -5,6 +5,7 @@ const navLinks = [...document.querySelectorAll('.primary-nav .nav-link')];
 const dropdowns = [...document.querySelectorAll('[data-dropdown]')];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const desktopHover = window.matchMedia('(hover: hover) and (min-width: 901px)');
+const compareEnglish = new Intl.Collator('en', { sensitivity: 'base' }).compare;
 
 const setDropdownState = (dropdown, isOpen) => {
   dropdown.classList.toggle('is-open', isOpen);
@@ -65,13 +66,14 @@ const handleHeader = () => header?.classList.toggle('scrolled', window.scrollY >
 handleHeader();
 window.addEventListener('scroll', handleHeader, { passive: true });
 
-document.querySelectorAll('.reveal').forEach((element) => {
+const revealElements = document.querySelectorAll('.reveal');
+revealElements.forEach((element) => {
   const delay = element.dataset.delay;
   if (delay) element.style.setProperty('--delay', `${delay}ms`);
 });
 
 if (reduceMotion || !('IntersectionObserver' in window)) {
-  document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+  revealElements.forEach((element) => element.classList.add('visible'));
 } else {
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -81,7 +83,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
     });
   }, { threshold: 0.13, rootMargin: '0px 0px -35px' });
 
-  document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+  revealElements.forEach((element) => revealObserver.observe(element));
 }
 
 const peopleCards = [...document.querySelectorAll('[data-person]')];
@@ -97,6 +99,7 @@ const peopleViewButtons = [...document.querySelectorAll('[data-people-view]')];
 const peopleGroups = [...document.querySelectorAll('[data-people-group]')];
 let currentPeopleView = 'table';
 let peopleRows = [];
+let peopleGroupCards = [];
 
 const getText = (element, selector) => element.querySelector(selector)?.textContent.trim() || '';
 const peopleAreaLabels = {
@@ -130,20 +133,30 @@ const peopleCommunityLabels = {
   junior: 'Junior Researcher',
 };
 const getAreaLabel = (element) => peopleAreaLabels[element.dataset.area]?.search || '';
-const getSurname = (element) => {
-  const name = getText(element, '.person-name-en');
-  return name.split(/\s+/).filter(Boolean).at(-1) || name;
-};
+// Read immutable card data once; sorting and filtering reuse it.
+const peopleDetails = new Map(peopleCards.map((card) => {
+  const name = getText(card, '.person-name-en');
+  const search = `${card.textContent} ${getAreaLabel(card)} ${card.dataset.group}`.toLocaleLowerCase();
+  card.dataset.search ||= search;
+  return [card, { name, surname: name.split(/\s+/).filter(Boolean).at(-1) || name, search }];
+}));
 
 const arrangePeopleByCommunity = () => {
   peopleCards.sort((left, right) => {
-    const surnameOrder = getSurname(left).localeCompare(getSurname(right), 'en', { sensitivity: 'base' });
-    return surnameOrder || getText(left, '.person-name-en').localeCompare(getText(right, '.person-name-en'), 'en', { sensitivity: 'base' });
+    const leftDetails = peopleDetails.get(left);
+    const rightDetails = peopleDetails.get(right);
+    return compareEnglish(leftDetails.surname, rightDetails.surname)
+      || compareEnglish(leftDetails.name, rightDetails.name);
   });
+  const groupLists = new Map(peopleGroups.map((group) => [group.id, group.querySelector('.people-list')]));
   peopleCards.forEach((card) => {
-    const targetList = document.querySelector(`#${card.dataset.group} .people-list`);
+    const targetList = groupLists.get(card.dataset.group);
     targetList?.append(card);
   });
+  peopleGroupCards = peopleGroups.map((group) => ({
+    group,
+    cards: [...group.querySelectorAll('[data-person]')],
+  }));
 };
 
 const buildPeopleTable = () => {
@@ -155,13 +168,15 @@ const buildPeopleTable = () => {
     row.dataset.group = card.dataset.group;
     row.dataset.area = card.dataset.area;
     row.dataset.role = card.dataset.role;
-    row.dataset.search = `${card.textContent} ${getAreaLabel(card)} ${card.dataset.group}`.toLocaleLowerCase();
+    row.dataset.search = peopleDetails.get(card).search;
 
     const nameCell = document.createElement('td');
     const name = document.createElement('span');
     name.className = 'table-name';
     const englishName = document.createElement('span');
-    englishName.textContent = getText(card, '.person-name-en');
+    const nameLink = card.querySelector('.person-name-en a');
+    if (nameLink) englishName.append(nameLink.cloneNode(true));
+    else englishName.textContent = peopleDetails.get(card).name;
     name.append(englishName);
     const chineseName = getText(card, '.person-name-zh');
     if (chineseName) {
@@ -217,7 +232,7 @@ const buildPeopleTable = () => {
 };
 
 const matchesPeopleFilter = (cardOrRow, query, roleFilter, areaFilter) => {
-  const searchText = (cardOrRow.dataset.search || cardOrRow.textContent).toLocaleLowerCase();
+  const searchText = cardOrRow.dataset.search;
   const matchesQuery = !query || searchText.includes(query);
   const matchesRole = roleFilter === 'all'
     || cardOrRow.dataset.group === roleFilter
@@ -233,19 +248,15 @@ const updatePeopleDirectory = () => {
   const areaFilter = peopleAreaFilter?.value || 'all';
   let visibleCount = 0;
 
-  peopleCards.forEach((card) => {
-    if (!card.dataset.search) card.dataset.search = `${card.textContent} ${getAreaLabel(card)} ${card.dataset.group}`.toLocaleLowerCase();
+  peopleCards.forEach((card, index) => {
     const isMatch = matchesPeopleFilter(card, query, roleFilter, areaFilter);
     card.hidden = !isMatch;
+    if (peopleRows[index]) peopleRows[index].hidden = !isMatch;
     if (isMatch) visibleCount += 1;
   });
 
-  peopleRows.forEach((row) => {
-    row.hidden = !matchesPeopleFilter(row, query, roleFilter, areaFilter);
-  });
-
-  peopleGroups.forEach((group) => {
-    const hasVisibleCard = [...group.querySelectorAll('[data-person]')].some((card) => !card.hidden);
+  peopleGroupCards.forEach(({ group, cards }) => {
+    const hasVisibleCard = cards.some((card) => !card.hidden);
     group.hidden = !hasVisibleCard;
   });
 
@@ -333,25 +344,22 @@ const getTeachingCourseTitle = (row) => (
 
 const teachingList = document.querySelector('.teaching-list');
 if (teachingList) {
-  const teachingRows = [...teachingList.querySelectorAll(':scope > .teaching-list-row')];
+  const teachingRows = [...teachingList.querySelectorAll(':scope > .teaching-list-row')].map((row) => ({
+    row,
+    chronology: getTeachingChronology(row),
+    instructor: getFirstTeachingInstructorSurname(row),
+    course: getTeachingCourseTitle(row),
+  }));
   teachingRows.sort((left, right) => {
-    const chronologyOrder = getTeachingChronology(right) - getTeachingChronology(left);
+    const chronologyOrder = right.chronology - left.chronology;
     if (chronologyOrder) return chronologyOrder;
 
-    const instructorOrder = getFirstTeachingInstructorSurname(left).localeCompare(
-      getFirstTeachingInstructorSurname(right),
-      'en',
-      { sensitivity: 'base' },
-    );
+    const instructorOrder = compareEnglish(left.instructor, right.instructor);
     if (instructorOrder) return instructorOrder;
 
-    return getTeachingCourseTitle(left).localeCompare(
-      getTeachingCourseTitle(right),
-      'en',
-      { sensitivity: 'base' },
-    );
+    return compareEnglish(left.course, right.course);
   });
-  teachingList.append(...teachingRows);
+  teachingList.append(...teachingRows.map(({ row }) => row));
 }
 
 const researchDirectionOrder = [
@@ -394,55 +402,36 @@ if (researchDirectionStack) {
   }
 }
 
-const getPublicationYear = (item) => Number.parseInt(
-  item.querySelector(':scope > span')?.textContent || '',
-  10,
-);
-const getFirstPublicationAuthor = (item) => (
-  item.querySelector('strong')?.textContent
-    .trim()
-    .split(/\s*(?:&|,)\s*/u)[0] || ''
-);
-const getPublicationAuthorLine = (item) => item.querySelector('strong')?.textContent.trim() || '';
-const getFirstPublicationAuthorSurname = (item) => (
-  getFirstPublicationAuthor(item).split(/\s+/u).filter(Boolean).at(-1) || ''
-);
+const getPublicationDetails = (item) => {
+  const authorLine = item.querySelector('strong')?.textContent.trim() || '';
+  const firstAuthor = authorLine.split(/\s*(?:&|,)\s*/u)[0] || '';
+  return {
+    item,
+    year: Number.parseInt(item.querySelector(':scope > span')?.textContent || '', 10),
+    surname: firstAuthor.split(/\s+/u).filter(Boolean).at(-1) || '',
+    firstAuthor,
+    authorLine,
+    title: item.querySelector('a')?.textContent || '',
+  };
+};
 
 document.querySelectorAll('.research-publications-panel .publication-list').forEach((list, index) => {
-  const sortedItems = [...list.children].sort((left, right) => {
-    const yearOrder = getPublicationYear(right) - getPublicationYear(left);
-    if (yearOrder) return yearOrder;
-    const surnameOrder = getFirstPublicationAuthorSurname(left).localeCompare(
-      getFirstPublicationAuthorSurname(right),
-      'en',
-      { sensitivity: 'base' },
-    );
-    if (surnameOrder) return surnameOrder;
-    const firstAuthorOrder = getFirstPublicationAuthor(left).localeCompare(
-      getFirstPublicationAuthor(right),
-      'en',
-      { sensitivity: 'base' },
-    );
-    if (firstAuthorOrder) return firstAuthorOrder;
-    const authorLineOrder = getPublicationAuthorLine(left).localeCompare(
-      getPublicationAuthorLine(right),
-      'en',
-      { sensitivity: 'base' },
-    );
-    if (authorLineOrder) return authorLineOrder;
-    return (left.querySelector('a')?.textContent || '').localeCompare(
-      right.querySelector('a')?.textContent || '',
-      'en',
-      { sensitivity: 'base' },
-    );
-  });
-  if (!list.closest('#harmonic-analysis')) list.append(...sortedItems);
+  const publications = [...list.children].map(getPublicationDetails);
+  if (!list.closest('#harmonic-analysis')) {
+    publications.sort((left, right) => (
+      (right.year - left.year)
+      || compareEnglish(left.surname, right.surname)
+      || compareEnglish(left.firstAuthor, right.firstAuthor)
+      || compareEnglish(left.authorLine, right.authorLine)
+      || compareEnglish(left.title, right.title)
+    ));
+    list.append(...publications.map(({ item }) => item));
+  }
   if (list.closest('#bifurcation-theory-pdes')) return;
 
-  const archivedItems = [...list.children].filter((item) => {
-    const year = getPublicationYear(item);
-    return Number.isFinite(year) && year < 2025;
-  });
+  const archivedItems = publications
+    .filter(({ year }) => Number.isFinite(year) && year < 2025)
+    .map(({ item }) => item);
   if (!archivedItems.length) return;
 
   list.id ||= `publication-list-${index + 1}`;
@@ -462,7 +451,6 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
 
   const label = button.querySelector('.publication-toggle-label');
   const symbol = button.querySelector('.publication-toggle-symbol');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const setButtonState = (expanded) => {
     button.setAttribute('aria-expanded', String(expanded));
@@ -481,7 +469,7 @@ document.querySelectorAll('.research-publications-panel .publication-list').forE
     const willExpand = button.getAttribute('aria-expanded') !== 'true';
     setButtonState(willExpand);
 
-    if (reducedMotion || typeof archivedItems[0]?.animate !== 'function') {
+    if (reduceMotion || typeof archivedItems[0]?.animate !== 'function') {
       archivedItems.forEach((item) => { item.hidden = !willExpand; });
       return;
     }
@@ -537,7 +525,7 @@ if ('IntersectionObserver' in window && observedSections.length) {
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
 
-    document.querySelectorAll('.primary-nav .nav-link').forEach((link) => link.classList.remove('active'));
+    navLinks.forEach((link) => link.classList.remove('active'));
     const id = visible.target.id;
     if (id === 'people') {
       document.querySelector('[data-dropdown-link][aria-controls="people-menu"]')?.classList.add('active');
