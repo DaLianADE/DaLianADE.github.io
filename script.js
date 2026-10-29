@@ -174,9 +174,7 @@ const buildPeopleTable = () => {
     const name = document.createElement('span');
     name.className = 'table-name';
     const englishName = document.createElement('span');
-    const nameLink = card.querySelector('.person-name-en a');
-    if (nameLink) englishName.append(nameLink.cloneNode(true));
-    else englishName.textContent = peopleDetails.get(card).name;
+    englishName.textContent = peopleDetails.get(card).name;
     name.append(englishName);
     const chineseName = getText(card, '.person-name-zh');
     if (chineseName) {
